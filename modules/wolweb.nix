@@ -12,7 +12,20 @@ in
     settings = mkOption {
       type = types.submodule (settings: {
         freeformType = attrsOf str;
+
+        options.port = lib.mkOption {
+          type = lib.types.port;
+          default = 8089;
+          description = ''
+            Which port this service should listen on.
+          '';
+        };
       });
+    };
+    devices = mkOption {
+      type = types.listOf (types.submodule (settings: {
+        freeformType = attrsOf str;
+      }));
     };
   };
 
@@ -23,10 +36,8 @@ in
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
 
-        environment = cfg.settings;
-
         serviceConfig = {
-          ExecStart = "${getExe cfg.package}";
+          ExecStart = "${getExe cfg.package} -c ${pkgs.writeText "config.json" (builtins.toJSON cfg.settings)} -d ${pkgs.writeText "devices.json" (builtins.toJSON { devices = cfg.devices;} )}";
           DynamicUser = true;
         };
       };
