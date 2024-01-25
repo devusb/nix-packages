@@ -18,7 +18,7 @@ buildGoModule rec {
   patches = [
     (fetchpatch {
       url = "https://patch-diff.githubusercontent.com/raw/sameerdhoot/wolweb/pull/36.patch";
-      hash = "sha256-jkBy8p4tasN4eTsAgImAft5YCGOdrnu/k9tGk1nz2y4=";
+      hash = "sha256-xd1OCCO8PqHT032GIzfkgc5a54SrY77rIOTB9d0Mnlk=";
     })
   ];
 
