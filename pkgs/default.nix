@@ -4,5 +4,6 @@
   wolweb = pkgs.callPackage ./wolweb { };
   jellyplex-watched = pkgs.callPackage ./jellyplex-watched { };
   igb = pkgs.linuxPackages.callPackage ./igb { };
+  jellystat = pkgs.callPackage ./jellystat { };
 
 }
