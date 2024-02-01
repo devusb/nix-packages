@@ -5,6 +5,8 @@ let
     wolweb = ./wolweb.nix;
     jellylex-watched = ./jellyplex-watched.nix;
     igb = ./igb.nix;
+    nqptp = ./nqptp.nix;
+    shairport-sync = ./shairport-sync.nix;
   };
 
   default = { ... }: {
