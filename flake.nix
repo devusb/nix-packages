@@ -15,7 +15,7 @@
 
   outputs = inputs@{ self, nixpkgs, flake-parts, hercules-ci-effects, attic }:
     let
-      ciSystems = [ "x86_64-linux" "aarch64-linux" ];
+      ciSystems = [ "x86_64-linux" ];
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
