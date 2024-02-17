@@ -5,5 +5,6 @@
   jellyplex-watched = pkgs.callPackage ./jellyplex-watched { };
   igb = pkgs.linuxPackages.callPackage ./igb { };
   jellystat = pkgs.callPackage ./jellystat { };
+  supermodel = pkgs.callPackage ./supermodel { };
 
 }
