@@ -8,7 +8,7 @@
 , SDL2_net
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "supermodel";
   version = "unstable-2024-01-29";
 
@@ -39,6 +39,7 @@ stdenv.mkDerivation rec {
 
     install -Dm755 bin/supermodel $out/bin/supermodel
     cp -r Config $out/share
+    cp -r Assets $out/share
   '';
 
   meta = with lib; {
@@ -47,6 +48,6 @@ stdenv.mkDerivation rec {
     license = licenses.gpl2; 
     maintainers = with maintainers; [ devusb ];
     mainProgram = "supermodel";
-    platforms = platforms.all;
+    platforms = platforms.linux;
   };
 }
