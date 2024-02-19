@@ -45,7 +45,7 @@ stdenv.mkDerivation {
   meta = with lib; {
     description = "Official repository of the Sega Model 3 arcade emulator";
     homepage = "https://github.com/trzy/Supermodel";
-    license = licenses.gpl2; 
+    license = licenses.gpl2;
     maintainers = with maintainers; [ devusb ];
     mainProgram = "supermodel";
     platforms = platforms.linux;
