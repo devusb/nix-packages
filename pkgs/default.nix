@@ -10,5 +10,6 @@
   kde-rounded-corners = pkgs.qt6Packages.callPackage ./kde-rounded-corners { kwin = pkgs.kde2nix.kwin; kcmutils = pkgs.kde2nix.kcmutils; };
   pgdiff = pkgs.callPackage ./pgdiff { };
   vkv = pkgs.callPackage ./vkv { };
+  sunshine-unstable = pkgs.callPackage ./sunshine { };
 
 }
