@@ -24,6 +24,7 @@ buildNpmPackage {
   postInstall = ''
     rm $out/bin/*
     makeWrapper ${lib.getExe nodejs} $out/bin/quakejs --add-flags "$out/lib/node_modules/quakejs/bin/web.js" 
+    makeWrapper ${lib.getExe nodejs} $out/bin/ioq3ded --add-flags "$out/lib/node_modules/quakejs/build/ioq3ded.js"
   '';
 
   meta = with lib; {
