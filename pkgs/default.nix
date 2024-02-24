@@ -11,5 +11,6 @@
   pgdiff = pkgs.callPackage ./pgdiff { };
   vkv = pkgs.callPackage ./vkv { };
   sunshine-unstable = pkgs.callPackage ./sunshine { };
+  quakejs = pkgs.callPackage ./quakejs { };
 
 }
