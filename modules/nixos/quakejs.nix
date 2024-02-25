@@ -17,6 +17,7 @@ in
       description = lib.mdDoc "Group under which quakejs runs";
     };
     client = mkOption {
+      default = { };
       type = submodule {
         options = {
           enable = mkEnableOption (mdDoc "quakejs web client");
@@ -40,6 +41,7 @@ in
       };
     };
     server = mkOption {
+      default = { };
       type = submodule {
         options = {
           enable = mkEnableOption (mdDoc "quakejs dedicated server");
@@ -80,7 +82,6 @@ in
           };
         };
       };
-      default = { };
     };
   };
 
