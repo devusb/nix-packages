@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkEnableOption mkPackageOption mkOption types mkIf getExe getExe';
+  inherit (lib) mkEnableOption mkPackageOption mkOption types mkIf getExe';
   cfg = config.services.quakejs;
 in
 {
