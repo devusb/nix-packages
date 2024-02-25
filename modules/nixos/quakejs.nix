@@ -7,40 +7,74 @@ in
   options.services.quakejs = with types; {
     package = mkPackageOption pkgs "quakejs" { };
     user = mkOption {
-      type = types.str;
+      type = str;
       default = "quakejs";
       description = lib.mdDoc "User account under which quakejs runs";
     };
     group = mkOption {
-      type = types.str;
+      type = str;
       default = "nogroup";
       description = lib.mdDoc "Group under which quakejs runs";
     };
     client = mkOption {
-      type = types.submodule {
+      type = submodule {
         options = {
           enable = mkEnableOption (mdDoc "quakejs web client");
           settings = mkOption {
-            type = types.attrsOf types.unspecified;
-            default = {
-              content = "content.quakejs.com";
-            };
+            default = { };
+            type = submodule (settings: {
+              freeformType = attrsOf str;
+              options.content = mkOption {
+                type = str;
+                default = "content.quakejs.com";
+                description = "URL for Quake content";
+              };
+              options.port = mkOption {
+                type = port;
+                default = 8080;
+                description = "Port for quakejs client";
+              };
+            });
           };
         };
       };
-      default = { };
     };
     server = mkOption {
-      type = types.submodule {
+      type = submodule {
         options = {
           enable = mkEnableOption (mdDoc "quakejs dedicated server");
+          settings = mkOption {
+            default = { };
+            type = submodule (settings: {
+              options.hostname = mkOption {
+                type = str;
+                default = "quakejs";
+                description = "quakejs server hostname";
+              };
+              options.port = mkOption {
+                type = port;
+                default = 27960;
+                description = "Port for quakejs server";
+              };
+              options.password = mkOption {
+                type = str;
+                default = "quakejs";
+                description = "rcon password for quakejs server";
+              };
+              options.dedicatedMode = mkOption {
+                type = int;
+                default = 1;
+                description = "dedicated server mode";
+              };
+            });
+          };
           dataDir = mkOption {
-            type = types.str;
+            type = str;
             default = "/var/lib/quakejs";
             description = "The directory where quakejs stores its files";
           };
           extraConfig = mkOption {
-            type = types.lines;
+            type = lines;
             default = "";
             description = (mdDoc "Extra configuration options");
           };
@@ -58,13 +92,14 @@ in
       };
       serverConfigFile = pkgs.writeTextFile {
         name = "q3ds.cfg";
-        text = cfg.server.extraConfig;
+        text = '' 
+          set sv_hostname "${cfg.server.settings.hostname}"
+          set dedicated ${builtins.toString cfg.server.settings.dedicatedMode}
+          set rconpassword "${cfg.server.settings.password}"
+
+        '' + cfg.server.extraConfig;
       };
       serverConfigFilePath = "${cfg.server.dataDir}/base/baseq3/${serverConfigFile.name}";
-      serverInit = pkgs.writeShellScriptBin "server-init.sh" ''
-        cp ${serverConfigFile} ${serverConfigFilePath} 
-        chown ${cfg.user}:${cfg.group} ${serverConfigFilePath} 
-      '';
     in
     mkIf (cfg.server.enable || cfg.client.enable) {
       users.users = mkIf (cfg.user == "quakejs") {
@@ -84,7 +119,7 @@ in
         };
       };
 
-      systemd.tmpfiles.settings."quakejs-data"."${cfg.server.dataDir}/base/baseq3".d = mkIf (cfg.server.enable == true) {
+      systemd.tmpfiles.settings."quakejs-baseq3"."${cfg.server.dataDir}/base/baseq3".d = mkIf (cfg.server.enable == true) {
         user = cfg.user;
         group = cfg.group;
       };
@@ -97,10 +132,9 @@ in
           User = cfg.user;
           Group = cfg.group;
           WorkingDirectory = cfg.server.dataDir;
-          ReadOnlyPaths = serverConfigFilePath;
+          BindReadOnlyPaths = [ "${serverConfigFile}:${serverConfigFilePath}" ];
 
-          ExecStartPre = "${getExe serverInit}";
-          ExecStart = "${getExe' cfg.package "ioq3ded"} +exec ${serverConfigFile.name}";
+          ExecStart = "${getExe' cfg.package "ioq3ded"} +set net_port ${builtins.toString cfg.server.settings.port} +exec ${serverConfigFile.name}";
           Restart = "on-failure";
         };
       };
