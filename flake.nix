@@ -9,11 +9,6 @@
       url = "github:zhaofengli/attic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # needed until Plasma 6 is in nixpkgs
-    kde2nix = {
-      url = "github:nix-community/kde2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{ self, nixpkgs, flake-parts, hercules-ci-effects, attic, ... }:
