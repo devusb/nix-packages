@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
-  inherit (pkgs) callPackage linuxPackages kdePackages;
+  inherit (pkgs) callPackage kdePackages;
+  linuxPackages = pkgs.linuxPackages_6_1;
 in
 {
   go-simple-upload-server = callPackage ./go-simple-upload-server { };
