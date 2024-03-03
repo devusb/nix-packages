@@ -1,6 +1,7 @@
+{ inputs, ... }:
 let
   modulesPerFile = {
-    overlay = ./overlay.nix;
+    overlay = import ./overlay.nix { inherit inputs; };
     go-simple-upload-server = ./go-simple-upload-server.nix;
     wolweb = ./wolweb.nix;
     jellylex-watched = ./jellyplex-watched.nix;

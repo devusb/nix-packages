@@ -1,6 +1,7 @@
+{ inputs, ... }:
 let
   modulesPerFile = {
-    overlay = ./overlay.nix;
+    overlay = ./overlay.nix { inherit inputs; };
   };
 
   default = { ... }: {

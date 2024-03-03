@@ -1,3 +1,4 @@
+{ ... }:
 let
   modulesPerFile = {
     iterm2 = ./iterm2.nix;

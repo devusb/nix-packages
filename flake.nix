@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    deckbd = {
+      url = "github:Ninlives/deckbd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     hercules-ci-effects.url = "github:mlabs-haskell/hercules-ci-effects/push-cache-effect";
     attic = {
@@ -30,9 +34,6 @@
       perSystem = { pkgs, system, ... }: {
         _module.args.pkgs = import nixpkgs {
           inherit system;
-          overlays = [
-            (final: prev: { kde2nix = inputs.kde2nix.packages.${system}; })
-          ];
         };
         formatter = pkgs.nixpkgs-fmt;
         packages = import ./pkgs { inherit pkgs; };
@@ -54,9 +55,9 @@
           default = final: prev: import ./pkgs { pkgs = prev; };
         };
 
-        nixosModules = import ./modules/nixos;
-        darwinModules = import ./modules/darwin;
-        homeManagerModules = import ./modules/home-manager;
+        nixosModules = import ./modules/nixos { inherit inputs; };
+        darwinModules = import ./modules/darwin { inherit inputs; };
+        homeManagerModules = import ./modules/home-manager { inherit inputs; };
       };
 
     };
