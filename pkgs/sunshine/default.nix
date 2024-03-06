@@ -46,26 +46,26 @@
 }:
 stdenv.mkDerivation rec {
   pname = "sunshine";
-  version = "0.21.0-unstable-2024-01-16";
+  version = "0.22.0";
 
   src = fetchFromGitHub {
     owner = "LizardByte";
     repo = "Sunshine";
-    rev = "b94f8c0b5037d8b5cac8da51c363b263429a49cc";
-    sha256 = "sha256-Zz+jI7mF7EAiAzIAROBnD1BsOxrVd6/BRpWQQ3LaqzI=";
+    rev = "v${version}";
+    sha256 = "sha256-O9U4zP1o6yWtzk+2DW7ueimvsTuajLY8IETlvCT4jTE=";
     fetchSubmodules = true;
   };
 
   patches = [
     ./dont-build-webui.patch
+    ./systemd-udev-path.patch
   ];
 
   # build webui
   ui = buildNpmPackage {
     inherit src version;
     pname = "sunshine-ui";
-    npmDepsHash = "sha256-EKx7hn6P/HdNQRDo8oeLoUj+Hu2lPNTysnSOFXZTg1o=";
-
+    npmDepsHash = "sha256-jAZUu2CfcqhC2xMiZYpY7KPCRVFQgT/kgUvSI+5Cpkc=";
 
     # use generated package-lock.json as upstream does not provide one
     postPatch = ''
