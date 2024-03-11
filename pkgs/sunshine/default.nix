@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, fetchpatch2
 , autoPatchelfHook
 , makeWrapper
 , buildNpmPackage
@@ -58,7 +59,11 @@ stdenv.mkDerivation rec {
 
   patches = [
     ./dont-build-webui.patch
-    ./systemd-udev-path.patch
+    (fetchpatch2 {
+      url = "https://github.com/LizardByte/Sunshine/commit/0d4dfcd708c0027b7d8827a03163858800fa79fa.patch";
+      revert = true;
+      hash = "sha256-77NtfX0zB7ty92AyFOz9wJoa1jHshlNbPQ7NOpqUuYo=";
+    })
   ];
 
   # build webui
