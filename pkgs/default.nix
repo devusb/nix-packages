@@ -17,5 +17,6 @@ in
   vkv = callPackage ./vkv { };
   sunshine-unstable = callPackage ./sunshine { };
   quakejs = callPackage ./quakejs { };
+  presenterm-export = callPackage ./presenterm-export { };
 
 }
