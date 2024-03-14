@@ -18,5 +18,6 @@ in
   sunshine-unstable = callPackage ./sunshine { };
   quakejs = callPackage ./quakejs { };
   presenterm-export = callPackage ./presenterm-export { };
+  chiaki4deck-git = pkgs.kdePackages.callPackage ./chiaki4deck { };
 
 }
