@@ -15,7 +15,7 @@ in
   kde-rounded-corners = kdePackages.callPackage ./kde-rounded-corners { };
   pgdiff = callPackage ./pgdiff { };
   vkv = callPackage ./vkv { };
-  sunshine-unstable = callPackage ./sunshine { };
+  sunshine-git = callPackage ./sunshine { };
   quakejs = callPackage ./quakejs { };
   presenterm-export = callPackage ./presenterm-export { };
   chiaki4deck-git = pkgs.kdePackages.callPackage ./chiaki4deck { };
