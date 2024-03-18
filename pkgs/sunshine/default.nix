@@ -1,7 +1,6 @@
 { lib
 , stdenv
 , fetchFromGitHub
-, fetchpatch
 , autoPatchelfHook
 , makeWrapper
 , buildNpmPackage
@@ -45,24 +44,24 @@
 , cudaSupport ? config.cudaSupport
 , cudaPackages ? { }
 }:
-stdenv.mkDerivation rec {
+let
+  stdenv' = if cudaSupport then cudaPackages.backendStdenv else stdenv;
+in
+stdenv'.mkDerivation rec {
   pname = "sunshine";
-  version = "unstable-2024-03-11";
+  version = "0.22.2-unstable-2024-03-16";
 
   src = fetchFromGitHub {
     owner = "LizardByte";
     repo = "Sunshine";
-    rev = "91744960c138772928b602eb0091a082d7f7a508";
-    sha256 = "sha256-mGQZ73390H0tbPj3J+34PnYDD++YvHcynNnEL5c+yNY=";
+    rev = "8316f44e10f3f6ef27fc27b3ef6e69f359b1b667";
+    sha256 = "sha256-Vnzuze2c/VMdLsw2XGyRTPKqi2VUVdTOu2t80LlvdCk=";
     fetchSubmodules = true;
   };
+
   patches = [
+    # remove npm install as it needs internet access -- handled separately below
     ./dont-build-webui.patch
-    (fetchpatch {
-      url = "https://github.com/LizardByte/Sunshine/commit/0d4dfcd708c0027b7d8827a03163858800fa79fa.patch";
-      hash = "sha256-77NtfX0zB7ty92AyFOz9wJoa1jHshlNbPQ7NOpqUuYo=";
-      revert = true;
-    })
   ];
 
   # build webui
@@ -146,16 +145,21 @@ stdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-Wno-dev"
+    # upstream tries to use systemd and udev packages to find these directories in FHS; set the paths explicitly instead
+    (lib.cmakeFeature "UDEV_RULES_INSTALL_DIR" "lib/udev/rules.d")
+    (lib.cmakeFeature "SYSTEMD_USER_UNIT_INSTALL_DIR" "lib/systemd/user")
   ];
 
   postPatch = ''
-    # fix hardcoded libevdev path
-    substituteInPlace cmake/compile_definitions/linux.cmake \
-      --replace '/usr/include/libevdev-1.0' '${libevdev}/include/libevdev-1.0'
+    # remove upstream dependency on systemd and udev
+    substituteInPlace cmake/packaging/linux.cmake \
+      --replace-fail 'find_package(Systemd)' "" \
+      --replace-fail 'find_package(Udev)' ""
 
     substituteInPlace packaging/linux/sunshine.desktop \
-      --replace '@PROJECT_NAME@' 'Sunshine' \
-      --replace '@PROJECT_DESCRIPTION@' 'Self-hosted game stream host for Moonlight'
+      --subst-var-by PROJECT_NAME 'Sunshine' \
+      --subst-var-by PROJECT_DESCRIPTION 'Self-hosted game stream host for Moonlight' \
+      --replace-fail '/usr/bin/env systemctl start --u sunshine' 'sunshine'
   '';
 
   preBuild = ''
