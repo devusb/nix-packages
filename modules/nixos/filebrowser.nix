@@ -71,8 +71,8 @@ in
         ProtectKernelModules = "yes";
         ProtectKernelTunables = "yes";
         RestrictNamespaces = "yes";
-        RestructSUIDSGID = "yes";
-        MemoryDenyWriteExectute = "yes";
+        RestrictSUIDSGID = "yes";
+        MemoryDenyWriteExecute = "yes";
         LockPersonality = "yes";
       };
     };
