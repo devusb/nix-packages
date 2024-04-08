@@ -13,6 +13,7 @@ let
     sleep-on-lan = ./sleep-on-lan.nix;
     sunshine = ./sunshine.nix;
     quakejs = ./quakejs.nix;
+    filebrowser = ./filebrowser.nix;
   };
 
   default = { ... }: {
