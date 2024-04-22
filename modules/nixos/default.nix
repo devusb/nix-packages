@@ -11,7 +11,6 @@ let
     deckbd = ./deckbd.nix;
     plex-mpv-sim = ./plex-mpv-shim.nix;
     sleep-on-lan = ./sleep-on-lan.nix;
-    sunshine = ./sunshine.nix;
     quakejs = ./quakejs.nix;
     filebrowser = ./filebrowser.nix;
   };
