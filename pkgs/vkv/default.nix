@@ -5,16 +5,16 @@
 
 buildGoModule rec {
   pname = "vkv";
-  version = "0.6.1";
+  version = "0.6.3";
 
   src = fetchFromGitHub {
     owner = "FalcoSuessgott";
     repo = "vkv";
     rev = "v${version}";
-    hash = "sha256-/vKEiRPykZX0C2G4OhkSq4O8p04JW98N+hbcdwy+VaA=";
+    hash = "sha256-2GsiaUYaL3t+WYH1XgkFxcG60uq4nxyHFX2VYAcUCps=";
   };
 
-  vendorHash = "sha256-WYRLVC65d2QKzxz1o9Z8YOay/8lod5tjvcZ1zfNUKDY=";
+  vendorHash = "sha256-HUFoT2AjIu30l6XiEAXniX6yT+6rGVAcZPkVfiZ43Sw=";
 
   ldflags = [
     "-s"
