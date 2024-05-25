@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  inherit (pkgs) callPackage kdePackages;
+  inherit (pkgs) callPackage;
   linuxPackages = pkgs.linuxPackages_6_1;
 in
 {
@@ -11,7 +11,6 @@ in
   jellystat = callPackage ./jellystat { };
   extest = callPackage ./extest { };
   go-plex-client = callPackage ./go-plex-client { };
-  kde-rounded-corners = kdePackages.callPackage ./kde-rounded-corners { };
   pgdiff = callPackage ./pgdiff { };
   vkv = callPackage ./vkv { };
   quakejs = callPackage ./quakejs { };
