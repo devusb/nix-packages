@@ -15,5 +15,6 @@ in
   vkv = callPackage ./vkv { };
   quakejs = callPackage ./quakejs { };
   presenterm-export = callPackage ./presenterm-export { };
+  podman-bootc = callPackage ./podman-bootc { };
 
 }
