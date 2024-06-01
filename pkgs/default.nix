@@ -16,5 +16,6 @@ in
   quakejs = callPackage ./quakejs { };
   presenterm-export = callPackage ./presenterm-export { };
   podman-bootc = callPackage ./podman-bootc { };
+  tv-sony = callPackage ./tv-sony { };
 
 }
