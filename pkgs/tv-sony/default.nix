@@ -2,7 +2,7 @@
 , python3Packages
 , fetchFromGitHub
 }:
-let 
+let
   inherit (python3Packages) buildPythonPackage setuptools-scm cryptography requests pygments;
 in
 buildPythonPackage {
