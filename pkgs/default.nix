@@ -17,5 +17,6 @@ in
   presenterm-export = callPackage ./presenterm-export { };
   podman-bootc = callPackage ./podman-bootc { };
   tv-sony = callPackage ./tv-sony { };
+  raptor  = callPackage ./raptor { };
 
 }
