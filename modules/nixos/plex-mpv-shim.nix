@@ -18,6 +18,7 @@ in
         {
           description = "plex-mpv-shim";
           wantedBy = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
           serviceConfig = {
             ExecStart = "${cfg.package}/bin/plex-mpv-shim";
           };
