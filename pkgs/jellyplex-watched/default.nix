@@ -5,18 +5,19 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "jellyplex-watched";
-  version = "6.0.0";
+  version = "6.0.1";
   pyproject = false;
 
   src = fetchFromGitHub {
     owner = "luigi311";
     repo = "JellyPlex-Watched";
     rev = "v${version}";
-    hash = "sha256-Gs12QY8e+gSd6vE2GCHrEirTMz6f6MSIGmPhsUiYR3Y=";
+    hash = "sha256-ZroyLQ+k/QMAtF1M9/5Uxe/zpwtBLrUDdrKyNArEdG8=";
   };
 
   propagatedBuildInputs = with python3.pkgs; [
     plexapi
+    packaging
     requests
     python-dotenv
     aiohttp
