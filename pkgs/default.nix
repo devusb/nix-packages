@@ -17,6 +17,5 @@ in
   presenterm-export = callPackage ./presenterm-export { };
   podman-bootc = callPackage ./podman-bootc { };
   tv-sony = callPackage ./tv-sony { };
-  vkd3d-proton-unstable = callPackage ./vkd3d-proton { };
 
 }
