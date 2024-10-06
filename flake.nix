@@ -8,22 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
-    hercules-ci-effects.url = "github:mlabs-haskell/hercules-ci-effects/push-cache-effect";
-    attic = {
-      url = "github:zhaofengli/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, flake-parts, hercules-ci-effects, attic, ... }:
-    let
-      ciSystems = [ "x86_64-linux" "aarch64-linux" ];
-    in
+  outputs = inputs@{ self, nixpkgs, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        hercules-ci-effects.push-cache-effect
-        hercules-ci-effects.flakeModule
-      ];
 
       systems = [
         "x86_64-linux"
@@ -31,23 +19,28 @@
         "aarch64-darwin"
       ];
 
-      perSystem = { pkgs, system, ... }: {
+      perSystem = { self', pkgs, lib, system, ... }: {
         _module.args.pkgs = import nixpkgs {
           inherit system;
         };
         formatter = pkgs.nixpkgs-fmt;
         packages = import ./pkgs { inherit pkgs; };
-      };
 
-      herculesCI.ciSystems = ciSystems;
-      push-cache-effect = {
-        enable = true;
-        attic-client-pkg = attic.packages.x86_64-linux.attic-client;
-        caches.r2d2 = {
-          type = "attic";
-          secretName = "attic";
-          packages = builtins.concatLists (builtins.map (attr: (builtins.attrValues self.packages."${attr}")) ciSystems);
-        };
+        checks =
+          let
+            blacklistPackages = {
+              "aarch64-darwin" = [
+                "quakejs"
+                "igb"
+                "podman-bootc"
+              ];
+              "x86_64-linux" = [ ];
+              "aarch64-linux" = [ ];
+            };
+            packages =
+              lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (lib.filterAttrs (n: _v: !(builtins.elem n blacklistPackages.${system})) self'.packages);
+          in
+          packages;
       };
 
       flake = {
