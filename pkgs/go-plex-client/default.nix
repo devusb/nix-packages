@@ -6,7 +6,7 @@
 
 buildGoModule rec {
   pname = "go-plex-client";
-  version = "unstable-2023-05-08";
+  version = "0-unstable-2023-05-08";
 
   src = fetchFromGitHub {
     owner = "jrudio";

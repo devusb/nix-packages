@@ -6,13 +6,13 @@
 
 buildGoModule rec {
   pname = "wolweb";
-  version = "unstable-2023-08-07";
+  version = "1-unstable-2024-10-17";
 
   src = fetchFromGitHub {
     owner = "sameerdhoot";
     repo = "wolweb";
-    rev = "496b4493176199603c46c50bcb3e1606e5b8f3d5";
-    hash = "sha256-6QasD6c4XUr2zjPdzMGgsXCji8pv9KkYXZfs8yPpepA=";
+    rev = "b447d507c4cc7068116946c2981cafcf130cecfa";
+    hash = "sha256-y9CzO4o+LZeAappk/KGX2vP2TtrT5Rp3OxI6ncCEXn0=";
   };
 
   patches = [
