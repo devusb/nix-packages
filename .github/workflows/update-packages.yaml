@@ -1,0 +1,20 @@
+name: update-packages
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 08 * * *'
+
+jobs:
+  packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main 
+      - name: Update flake packages
+        uses: devusb/nix-update-action@unstable-version
+        with:
+          blacklist: "igb,pgdiff,quakejs"
+          branch: "update_packages_action"
+          pr-title: "Update packages"
