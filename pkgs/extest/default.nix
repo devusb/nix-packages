@@ -8,16 +8,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "extest";
-  version = "1.0.3";
+  version = "1.0.2-unstable-2024-11-06";
 
   src = fetchFromGitHub {
     owner = "Supreeeme";
     repo = "extest";
-    rev = "2a0a1f27239f6307b333a68ca7023ccf90215f3e";
-    hash = "sha256-ZCHOyAACYoV3wW7en374Kfj0STmi0+72INKGNQkO/rU=";
+    rev = "1a419a1691c6accaafef6cfc962a06712d4658e9";
+    hash = "sha256-q0BqvdIdcUARGmaPOnzPVLtcWFHJeZ9t2jcfYxS0KTk=";
   };
 
-  cargoHash = "sha256-0pLNpsbbkPQm8OGMuRI+nPWeiTt3p103Ak3rSpnTk4A=";
+  cargoHash = "sha256-PPy1uDZLG+ocVRos83gMvJvgi5qc12hUrcXcPXl+dhs=";
 
   nativeBuildInputs = [
     pkg-config
