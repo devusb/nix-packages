@@ -1,8 +1,8 @@
-name: update-flake-lock
+name: update-flake
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 10 * * 1'
+    - cron: '0 10 * * *'
 
 jobs:
   lockfile:
@@ -19,3 +19,14 @@ jobs:
           pr-labels: |                  # Labels to be set on the PR
             dependencies
             automated
+  update-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main 
+      - name: Update flake packages
+        uses: devusb/nix-update-action@unstable-version
+        with:
+          blacklist: "igb,pgdiff,quakejs"
