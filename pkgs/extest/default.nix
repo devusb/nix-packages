@@ -8,7 +8,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "extest";
-  version = "1.0.3";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "Supreeeme";
@@ -17,7 +17,7 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-ZCHOyAACYoV3wW7en374Kfj0STmi0+72INKGNQkO/rU=";
   };
 
-  cargoHash = "sha256-0pLNpsbbkPQm8OGMuRI+nPWeiTt3p103Ak3rSpnTk4A=";
+  cargoHash = "sha256-fTgwUn5ndIO8xsyTA8WzCX37FhOl4w3U0FCSRDeY2iA=";
 
   nativeBuildInputs = [
     pkg-config
