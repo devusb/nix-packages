@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main 
+        uses: cachix/install-nix-action@v30
       - name: Update flake packages
         uses: devusb/nix-update-action@unstable-version
         with:
