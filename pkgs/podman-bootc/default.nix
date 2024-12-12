@@ -11,13 +11,13 @@
 
 buildGoModule {
   pname = "podman-bootc";
-  version = "0.1.1-unstable-2024-11-13";
+  version = "0.1.1-unstable-2024-12-10";
 
   src = fetchFromGitHub {
     owner = "containers";
     repo = "podman-bootc";
-    rev = "4bab85f45bb85717a9ffd78d4da6515b27e34e23";
-    hash = "sha256-3Pa+GJt5Kp3osc47DSwG6WTbYJ2uqGxtRjZ1DCLq4Ms=";
+    rev = "96bfc8f6803516d3cf17884935a5be1d81aa6ffe";
+    hash = "sha256-Hxg2QSedPAWYZpuesUEFol9bpTppjB0/MpCcB+txMDc=";
   };
 
   vendorHash = "sha256-8QP4NziLwEo0M4NW5UgSEMAVgBDxmnE+PLbpyclK9RQ=";
