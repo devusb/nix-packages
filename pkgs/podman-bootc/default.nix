@@ -11,7 +11,7 @@
 
 buildGoModule {
   pname = "podman-bootc";
-  version = "0.1.1-unstable-2024-12-10";
+  version = "0.1.2-unstable-2024-12-10";
 
   src = fetchFromGitHub {
     owner = "containers";
