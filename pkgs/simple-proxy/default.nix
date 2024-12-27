@@ -1,7 +1,7 @@
-{ lib
-, buildGoModule
-, fetchFromGitHub
-,
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
 }:
 
 buildGoModule rec {
@@ -17,7 +17,10 @@ buildGoModule rec {
 
   vendorHash = "sha256-5PN6a66hKWlqRVFQU+0c0fqVMAstUje0W25on30dpaM=";
 
-  ldflags = [ "-s" "-w" ];
+  ldflags = [
+    "-s"
+    "-w"
+  ];
 
   meta = {
     description = "Simple HTTP/HTTPS proxy - designed to be distributed as a self-contained binary that can be dropped in anywhere and run";

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -116,7 +121,11 @@ in
       };
     in
     {
-      environment.systemPackages = [ cfg.package launcher desktopItem ];
+      environment.systemPackages = [
+        cfg.package
+        launcher
+        desktopItem
+      ];
     }
   );
 }

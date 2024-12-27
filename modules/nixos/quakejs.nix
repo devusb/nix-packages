@@ -1,6 +1,18 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkEnableOption mkPackageOption mkOption types mkIf getExe';
+  inherit (lib)
+    mkEnableOption
+    mkPackageOption
+    mkOption
+    types
+    mkIf
+    getExe'
+    ;
   cfg = config.services.quakejs;
 in
 {
@@ -93,18 +105,23 @@ in
       };
       serverConfigFile = pkgs.writeTextFile {
         name = "q3ds.cfg";
-        text = '' 
-          set sv_hostname "${cfg.server.settings.hostname}"
-          set dedicated ${builtins.toString cfg.server.settings.dedicatedMode}
-          set rconpassword "${cfg.server.settings.password}"
+        text =
+          ''
+            set sv_hostname "${cfg.server.settings.hostname}"
+            set dedicated ${builtins.toString cfg.server.settings.dedicatedMode}
+            set rconpassword "${cfg.server.settings.password}"
 
-        '' + cfg.server.extraConfig;
+          ''
+          + cfg.server.extraConfig;
       };
       serverConfigFilePath = "${cfg.server.dataDir}/base/baseq3/${serverConfigFile.name}";
     in
     mkIf (cfg.server.enable || cfg.client.enable) {
       users.users = mkIf (cfg.user == "quakejs") {
-        quakejs = { group = cfg.group; isSystemUser = true; };
+        quakejs = {
+          group = cfg.group;
+          isSystemUser = true;
+        };
       };
 
       systemd.services.quakejs-client = mkIf (cfg.client.enable == true) {
@@ -120,10 +137,12 @@ in
         };
       };
 
-      systemd.tmpfiles.settings."quakejs-baseq3"."${cfg.server.dataDir}/base/baseq3".d = mkIf (cfg.server.enable == true) {
-        user = cfg.user;
-        group = cfg.group;
-      };
+      systemd.tmpfiles.settings."quakejs-baseq3"."${cfg.server.dataDir}/base/baseq3".d =
+        mkIf (cfg.server.enable == true)
+          {
+            user = cfg.user;
+            group = cfg.group;
+          };
       systemd.services.quakejs-server = mkIf (cfg.server.enable == true) {
         description = "quakejs server";
         after = [ "network.target" ];

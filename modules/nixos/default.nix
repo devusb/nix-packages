@@ -15,8 +15,10 @@ let
     filebrowser = ./filebrowser.nix;
   };
 
-  default = { ... }: {
-    imports = builtins.attrValues modulesPerFile;
-  };
+  default =
+    { ... }:
+    {
+      imports = builtins.attrValues modulesPerFile;
+    };
 in
 modulesPerFile // { inherit default; }
