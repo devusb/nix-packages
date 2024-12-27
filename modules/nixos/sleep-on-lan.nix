@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -27,15 +32,14 @@ in
       allowedUDPPortRanges = [ 9 ];
     };
 
-    systemd.services.sleep-on-lan =
-      {
-        description = "sleep-on-lan";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          ExecStart = "${pkgs.sleep-on-lan}/bin/sleep-on-lan";
-        };
+    systemd.services.sleep-on-lan = {
+      description = "sleep-on-lan";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.sleep-on-lan}/bin/sleep-on-lan";
       };
+    };
 
   };
 }

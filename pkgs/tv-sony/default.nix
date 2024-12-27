@@ -1,9 +1,16 @@
-{ lib
-, python3Packages
-, fetchFromGitHub
+{
+  lib,
+  python3Packages,
+  fetchFromGitHub,
 }:
 let
-  inherit (python3Packages) buildPythonPackage setuptools-scm cryptography requests pygments;
+  inherit (python3Packages)
+    buildPythonPackage
+    setuptools-scm
+    cryptography
+    requests
+    pygments
+    ;
 in
 buildPythonPackage {
   pname = "tv-sony";

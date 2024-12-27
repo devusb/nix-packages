@@ -1,6 +1,19 @@
-{ lib, pkgs, config, utils, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  utils,
+  ...
+}:
 let
-  inherit (lib) mkEnableOption mkPackageOption mkOption mkIf types getExe;
+  inherit (lib)
+    mkEnableOption
+    mkPackageOption
+    mkOption
+    mkIf
+    types
+    getExe
+    ;
   inherit (utils) escapeSystemdExecArgs;
   cfg = config.services.filebrowser;
   settingsFormat = pkgs.formats.json { };
@@ -34,7 +47,9 @@ in
       group = config.users.groups.filebrowser.name;
       createHome = true;
     };
-    users.groups.filebrowser = { name = "filebrowser"; };
+    users.groups.filebrowser = {
+      name = "filebrowser";
+    };
 
     systemd.tmpfiles.settings."filebrowser-files"."${cfg.dataDir}/files".d = {
       user = config.users.users.filebrowser.name;

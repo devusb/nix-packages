@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -23,23 +28,26 @@ in
       });
     };
     devices = mkOption {
-      type = types.listOf (types.submodule (settings: {
-        freeformType = attrsOf str;
-      }));
+      type = types.listOf (
+        types.submodule (settings: {
+          freeformType = attrsOf str;
+        })
+      );
     };
   };
 
-  config =
-    mkIf cfg.enable {
-      systemd.services.wolweb = {
-        description = "wolweb";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
+  config = mkIf cfg.enable {
+    systemd.services.wolweb = {
+      description = "wolweb";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
 
-        serviceConfig = {
-          ExecStart = "${getExe cfg.package} -c ${pkgs.writeText "config.json" (builtins.toJSON cfg.settings)} -d ${pkgs.writeText "devices.json" (builtins.toJSON { devices = cfg.devices;} )}";
-          DynamicUser = true;
-        };
+      serviceConfig = {
+        ExecStart = "${getExe cfg.package} -c ${pkgs.writeText "config.json" (builtins.toJSON cfg.settings)} -d ${
+          pkgs.writeText "devices.json" (builtins.toJSON { devices = cfg.devices; })
+        }";
+        DynamicUser = true;
       };
     };
+  };
 }

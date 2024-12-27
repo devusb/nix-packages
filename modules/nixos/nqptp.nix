@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -40,18 +45,23 @@ in
     services.avahi.publish.userServices = true;
 
     networking.firewall = mkIf cfg.openFirewall {
-      allowedUDPPortRanges = [ 319 320 ];
+      allowedUDPPortRanges = [
+        319
+        320
+      ];
     };
 
-    systemd.services.nqptp =
-      {
-        description = "nqptp";
-        after = [ "network.target" "avahi-daemon.service" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          ExecStart = "${pkgs.nqptp}/bin/nqptp";
-        };
+    systemd.services.nqptp = {
+      description = "nqptp";
+      after = [
+        "network.target"
+        "avahi-daemon.service"
+      ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.nqptp}/bin/nqptp";
       };
+    };
 
   };
 }

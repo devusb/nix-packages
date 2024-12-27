@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 let
   cfg = config.programs.iterm2;
@@ -16,9 +21,15 @@ in
     };
 
     profiles = mkOption {
-      type = with types;
+      type =
+        with types;
         let
-          prim = oneOf [ bool int str float ];
+          prim = oneOf [
+            bool
+            int
+            str
+            float
+          ];
           primOrPrimAttrs = either prim (attrsOf prim);
           entry = either prim (listOf primOrPrimAttrs);
           entryOrAttrsOf = t: either entry (attrsOf t);
@@ -48,9 +59,15 @@ in
     };
 
     preferences = mkOption {
-      type = with types;
+      type =
+        with types;
         let
-          prim = oneOf [ bool int str float ];
+          prim = oneOf [
+            bool
+            int
+            str
+            float
+          ];
           primOrPrimAttrs = either prim (attrsOf prim);
           entry = either prim (listOf primOrPrimAttrs);
           entryOrAttrsOf = t: either entry (attrsOf t);

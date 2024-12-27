@@ -1,12 +1,13 @@
-{ lib
-, buildGoModule
-, fetchFromGitHub
-, pkg-config
-, btrfs-progs
-, libvirt
-, gpgme
-, xorriso
-, lvm2
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+  pkg-config,
+  btrfs-progs,
+  libvirt,
+  gpgme,
+  xorriso,
+  lvm2,
 }:
 
 buildGoModule {
@@ -22,7 +23,10 @@ buildGoModule {
 
   vendorHash = "sha256-8QP4NziLwEo0M4NW5UgSEMAVgBDxmnE+PLbpyclK9RQ=";
 
-  ldflags = [ "-s" "-w" ];
+  ldflags = [
+    "-s"
+    "-w"
+  ];
 
   nativeBuildInputs = [
     pkg-config

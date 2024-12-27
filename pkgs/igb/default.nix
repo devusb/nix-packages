@@ -1,4 +1,10 @@
-{ stdenv, lib, fetchurl, kernel, ... }:
+{
+  stdenv,
+  lib,
+  fetchurl,
+  kernel,
+  ...
+}:
 
 stdenv.mkDerivation rec {
   name = "igb-${version}-${kernel.version}";
@@ -11,7 +17,10 @@ stdenv.mkDerivation rec {
 
   sourceRoot = "igb-${version}/src";
 
-  hardeningDisable = [ "pic" "format" ];
+  hardeningDisable = [
+    "pic"
+    "format"
+  ];
 
   nativeBuildInputs = kernel.moduleBuildDependencies;
 

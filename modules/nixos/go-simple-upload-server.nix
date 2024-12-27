@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -39,7 +44,9 @@ in
         serviceConfig = {
           ExecStart = "${getExe cfg.package} -config ${settingsFile}";
           DynamicUser = true;
-          ReadWritePaths = mkIf (cfg.settings != null && builtins.hasAttr "document_root" cfg.settings) "${cfg.settings.document_root}";
+          ReadWritePaths = mkIf (
+            cfg.settings != null && builtins.hasAttr "document_root" cfg.settings
+          ) "${cfg.settings.document_root}";
           SupplementaryGroups = mkIf (cfg.extraGroups != null) cfg.extraGroups;
           Group = mkIf (cfg.group != null) "${cfg.group}";
         };

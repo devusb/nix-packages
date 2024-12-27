@@ -1,7 +1,8 @@
-{ lib
-, buildNpmPackage
-, fetchFromGitHub
-, nodejs
+{
+  lib,
+  buildNpmPackage,
+  fetchFromGitHub,
+  nodejs,
 }:
 let
   quakejs-docker = fetchFromGitHub {
