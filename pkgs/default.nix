@@ -18,5 +18,6 @@ in
   podman-bootc = callPackage ./podman-bootc { };
   tv-sony = callPackage ./tv-sony { };
   simple-proxy = callPackage ./simple-proxy { };
+  Starship = callPackage ./Starship { stdenv = pkgs.clangStdenv; };
 
 }
