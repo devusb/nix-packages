@@ -68,6 +68,7 @@
                   "igb"
                   "podman-bootc"
                   "Starship"
+                  "dreamm"
                 ];
                 "x86_64-linux" = [ ];
                 "aarch64-linux" = [ ];
