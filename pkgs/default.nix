@@ -19,5 +19,6 @@ in
   tv-sony = callPackage ./tv-sony { };
   simple-proxy = callPackage ./simple-proxy { };
   Starship = callPackage ./Starship { stdenv = pkgs.clangStdenv; };
+  dreamm = callPackage ./dreamm { };
 
 }
