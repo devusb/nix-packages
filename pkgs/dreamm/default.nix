@@ -55,7 +55,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     install -D dreamm $out/bin/dreamm
-    install -D mt32emu-dreamm.so $out/lib/mt32emu-dreamm.so
+    install -D mt32emu-dreamm.so $out/bin/mt32emu-dreamm.so
     runHook postInstall
   '';
 
