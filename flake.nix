@@ -67,6 +67,7 @@
                   "quakejs"
                   "igb"
                   "podman-bootc"
+                  "Starship"
                 ];
                 "x86_64-linux" = [ ];
                 "aarch64-linux" = [ ];
