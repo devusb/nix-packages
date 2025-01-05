@@ -26,7 +26,6 @@
   libpulseaudio,
   libzip,
   zenity,
-  yaml-cpp,
 }:
 
 let
@@ -125,7 +124,6 @@ stdenv.mkDerivation rec {
     libpulseaudio
     libzip
     zenity
-    yaml-cpp
   ];
 
   hardeningDisable = [ "format" ];
