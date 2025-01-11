@@ -86,7 +86,7 @@ let
   };
 in
 stdenv.mkDerivation rec {
-  pname = "Starship";
+  pname = "starship-sf64";
   version = "1.0.0";
 
   src = fetchFromGitHub {

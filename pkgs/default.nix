@@ -3,7 +3,7 @@ let
   inherit (pkgs) callPackage;
   linuxPackages = pkgs.linuxPackages_6_1;
 in
-{
+rec {
   go-simple-upload-server = callPackage ./go-simple-upload-server { };
   wolweb = callPackage ./wolweb { };
   jellyplex-watched = callPackage ./jellyplex-watched { };
@@ -18,7 +18,8 @@ in
   podman-bootc = callPackage ./podman-bootc { };
   tv-sony = callPackage ./tv-sony { };
   simple-proxy = callPackage ./simple-proxy { };
-  Starship = callPackage ./Starship { stdenv = pkgs.clangStdenv; };
+  starship-sf64 = callPackage ./starship { stdenv = pkgs.clangStdenv; };
+  Starship = starship-sf64;
   dreamm = callPackage ./dreamm { };
 
 }
