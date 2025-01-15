@@ -69,6 +69,7 @@
                   "podman-bootc"
                   "starship-sf64"
                   "Starship"
+                  "torch"
                   "dreamm"
                 ];
                 "x86_64-linux" = [ ];
