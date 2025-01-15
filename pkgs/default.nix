@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  inherit (pkgs) callPackage;
+  inherit (pkgs) callPackage lib;
   linuxPackages = pkgs.linuxPackages_6_1;
 in
 rec {
@@ -20,6 +20,20 @@ rec {
   simple-proxy = callPackage ./simple-proxy { };
   starship-sf64 = callPackage ./starship { stdenv = pkgs.clangStdenv; };
   Starship = starship-sf64;
+  torch = callPackage ./torch {
+    spdlog = pkgs.spdlog.overrideAttrs (old: {
+      src = old.src.override {
+        rev = "7e635fca68d014934b4af8a1cf874f63989352b7";
+        hash = "sha256-cxTaOuLXHRU8xMz9gluYz0a93O0ez2xOxbloyc1m1ns=";
+      };
+      postInstall = ''
+        mkdir -p $out/share/doc/spdlog
+        cp -rv ../example $out/share/doc/spdlog
+      '';
+      cmakeFlags = lib.lists.remove "-DSPDLOG_FMT_EXTERNAL=ON" old.cmakeFlags;
+      doCheck = false;
+    });
+  };
   dreamm = callPackage ./dreamm { };
 
 }
