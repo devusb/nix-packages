@@ -6,14 +6,14 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "presenterm-export";
-  version = "0.2.5";
+  version = "0.2.6";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "mfontanini";
     repo = "presenterm-export";
     rev = "v${version}";
-    hash = "sha256-4DTEPrla0ftb0VU8btK6gCunPVu/AVypUyXn5TtCK8o=";
+    hash = "sha256-0LIH/B8UT8QENiV1iYrZHS7/QL0Q8eq0xwb3s9DGLN8=";
   };
 
   nativeBuildInputs = [
