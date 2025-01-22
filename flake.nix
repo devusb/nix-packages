@@ -70,6 +70,7 @@
                   "starship-sf64"
                   "Starship"
                   "dreamm"
+                  "extest"
                 ];
                 "x86_64-linux" = [ ];
                 "aarch64-linux" = [ ];

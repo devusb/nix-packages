@@ -7,7 +7,7 @@
   wayland,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage {
   pname = "extest";
   version = "1.0.2-unstable-2024-11-06";
 
@@ -32,7 +32,8 @@ rustPlatform.buildRustPackage rec {
     description = "X11 XTEST reimplementation primarily for Steam Controller on Wayland";
     homepage = "https://github.com/Supreeeme/extest";
     license = licenses.mit;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [ devusb ];
     mainProgram = "extest";
+    platforms = platforms.linux;
   };
 }
