@@ -13,6 +13,7 @@ let
     sleep-on-lan = ./sleep-on-lan.nix;
     quakejs = ./quakejs.nix;
     filebrowser = ./filebrowser.nix;
+    hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
   };
 
   default =

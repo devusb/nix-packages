@@ -21,5 +21,6 @@ rec {
   starship-sf64 = callPackage ./starship { stdenv = pkgs.clangStdenv; };
   Starship = starship-sf64;
   dreamm = callPackage ./dreamm { };
+  hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
 
 }
