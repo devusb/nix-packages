@@ -7,13 +7,13 @@
 
 buildGoModule rec {
   pname = "go-plex-client";
-  version = "0-unstable-2023-05-08";
+  version = "0-unstable-2025-01-27";
 
   src = fetchFromGitHub {
     owner = "jrudio";
     repo = "go-plex-client";
-    rev = "834554e41d30eef59205fb43221dda92d8dbebd1";
-    hash = "sha256-ulPMaScJrysAo1uuNzc+wCzKoBvmK8LZ2HNsyiqYMDE=";
+    rev = "943dc7a39f7cc06d12497f0a465b486d39e39ff1";
+    hash = "sha256-TXzhS0iML2EFP6xLWLi8QiMoYZZ/6a5mPEH7v1ASaMY=";
   };
 
   vendorHash = "sha256-vRp3h+6GWSfmdz0LDO1mJnwU1kjUUUXsIwUsZM9aLIQ=";
