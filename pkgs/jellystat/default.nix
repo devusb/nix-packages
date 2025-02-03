@@ -6,16 +6,16 @@
 
 buildNpmPackage rec {
   pname = "jellystat";
-  version = "1.1.2";
+  version = "1.1.3";
 
   src = fetchFromGitHub {
     owner = "CyferShepard";
     repo = "Jellystat";
     rev = version;
-    hash = "sha256-cePCReQZ0Z0vyMeQOQVDAgPLC/OOkMdRp1iQpxSi0Ms=";
+    hash = "sha256-6MV2XoUwXeUV4kJIcN03KylVc6LwSJxtM60xn1ywT/U=";
   };
 
-  npmDepsHash = "sha256-oQ7HVrE0CsATf9ADr+IlnE3TNNU5JKZB3vd2otaL1iw=";
+  npmDepsHash = "sha256-nsFGRRAKDk33jMceUHjTfNm2FutPpMHazmOgIyBToCQ=";
 
   meta = with lib; {
     description = "Jellystat is a free and open source Statistics App for Jellyfin";
