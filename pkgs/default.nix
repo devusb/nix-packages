@@ -14,7 +14,6 @@ rec {
   pgdiff = callPackage ./pgdiff { };
   vkv = callPackage ./vkv { };
   quakejs = callPackage ./quakejs { };
-  presenterm-export = callPackage ./presenterm-export { };
   podman-bootc = callPackage ./podman-bootc { };
   tv-sony = callPackage ./tv-sony { };
   simple-proxy = callPackage ./simple-proxy { };
