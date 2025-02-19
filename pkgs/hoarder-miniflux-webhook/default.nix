@@ -7,13 +7,13 @@
 
 buildGoModule {
   pname = "hoarder-miniflux-webhook";
-  version = "0-unstable-2025-01-28";
+  version = "0-unstable-2025-02-15";
 
   src = fetchFromGitHub {
     owner = "mathpn";
     repo = "hoarder-miniflux-webhook";
-    rev = "142a827a9729dafaacfc2a2aa25c66f9d857acef";
-    hash = "sha256-zqf/2lWDbLZcSO7wrDJlNMTjrGG+NA7uwjs45SqGgd4=";
+    rev = "0c78bee7b6c76321137005c4f13c316489d15e30";
+    hash = "sha256-TLAG8JdQNrMwY73SwgY/Lp4LBPElobJUBYz8L2ktiTQ=";
   };
 
   vendorHash = "sha256-NHTKwUSIbNCUco88JbHOo3gt6S37ggee+LWNbHaRGEs=";
