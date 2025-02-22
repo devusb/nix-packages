@@ -14,6 +14,7 @@ let
     quakejs = ./quakejs.nix;
     filebrowser = ./filebrowser.nix;
     hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
+    unpackerr = ./unpackerr.nix;
   };
 
   default =
