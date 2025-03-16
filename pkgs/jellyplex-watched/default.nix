@@ -22,6 +22,8 @@ python3.pkgs.buildPythonPackage rec {
     requests
     python-dotenv
     aiohttp
+    pydantic
+    loguru
   ];
 
   installPhase = ''
