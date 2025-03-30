@@ -69,6 +69,7 @@
                   "podman-bootc"
                   "starship-sf64"
                   "Starship"
+                  "torch"
                   "dreamm"
                   "extest"
                 ];
