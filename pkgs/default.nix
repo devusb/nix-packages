@@ -21,5 +21,7 @@ rec {
   Starship = starship-sf64;
   dreamm = callPackage ./dreamm { };
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
+  md2conf = callPackage ./md2conf { };
+  mcp-atlassian = callPackage ./mcp-atlassian { markdown-to-confluence = md2conf; };
 
 }
