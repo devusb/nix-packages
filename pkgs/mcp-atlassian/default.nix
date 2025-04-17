@@ -7,14 +7,14 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "mcp-atlassian";
-  version = "0.6.5";
+  version = "0.7.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "sooperset";
     repo = "mcp-atlassian";
     rev = "v${version}";
-    hash = "sha256-Af707u6hkkOsMmCj0Z7y93bHLDKCQmdliWv9zbzn7Io=";
+    hash = "sha256-W8deBD+cSpljbN4+omZHrYhmOH4K0odLcQSx7Daddso=";
   };
 
   build-system = [
