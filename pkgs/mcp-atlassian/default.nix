@@ -32,8 +32,11 @@ python3.pkgs.buildPythonApplication rec {
     mcp
     pydantic
     python-dotenv
+    python-dateutil
     starlette
+    thefuzz
     trio
+    types-python-dateutil
     uvicorn
   ];
 
