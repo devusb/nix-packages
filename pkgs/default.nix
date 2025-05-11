@@ -22,7 +22,10 @@ rec {
   dreamm = callPackage ./dreamm { };
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
   md2conf = callPackage ./md2conf { };
-  mcp-atlassian = callPackage ./mcp-atlassian { markdown-to-confluence = md2conf; };
   fastmcp = callPackage ./fastmcp { };
+  mcp-atlassian = callPackage ./mcp-atlassian {
+    inherit fastmcp;
+    markdown-to-confluence = md2conf;
+  };
 
 }
