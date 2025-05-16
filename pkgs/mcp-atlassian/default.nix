@@ -19,10 +19,10 @@ let
   });
 
   mcp' = python3.pkgs.mcp.overridePythonAttrs (old: rec {
-    version = "1.8.0";
+    version = "1.8.1";
     src = old.src.override {
       tag = "v${version}";
-      hash = "sha256-OhMAQYOOJ5oUkRj1Ijj4/b6aiPU9FfCuz5GmywGfMRY=";
+      hash = "sha256-r3B/2Nzb3Cai0/k7dMmcduWQWsbkhYW6UVyaE4BCz/Y=";
     };
 
     postPatch = ''
