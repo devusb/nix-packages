@@ -2,7 +2,7 @@
   description = "devusb packages and modules";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     deckbd = {
       url = "github:Ninlives/deckbd";
       inputs.nixpkgs.follows = "nixpkgs";

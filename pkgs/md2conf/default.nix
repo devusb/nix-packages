@@ -29,13 +29,7 @@ python3.pkgs.buildPythonApplication rec {
     pymdown-extensions
     pyyaml
     requests
-    (types-lxml.overrideAttrs (old: rec {
-      version = "2024.12.13";
-      src = old.src.override {
-        tag = version;
-        hash = "sha256-iqIOwQIg6EB/m8FIoUzkvh1W0w4bKmS9zi4Z+5qlC+0=";
-      };
-    }))
+    types-lxml
     types-markdown
     types-pyyaml
     types-requests
