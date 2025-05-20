@@ -23,6 +23,7 @@ rec {
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
   md2conf = callPackage ./md2conf { };
   fastmcp = callPackage ./fastmcp { };
+  types-cachetools = callPackage ./types-cachetools { };
   mcp-atlassian = callPackage ./mcp-atlassian {
     inherit fastmcp;
     markdown-to-confluence = md2conf;
