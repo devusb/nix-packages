@@ -25,7 +25,7 @@ rec {
   fastmcp = callPackage ./fastmcp { };
   types-cachetools = callPackage ./types-cachetools { };
   mcp-atlassian = callPackage ./mcp-atlassian {
-    inherit fastmcp;
+    inherit fastmcp types-cachetools;
     markdown-to-confluence = md2conf;
   };
 
