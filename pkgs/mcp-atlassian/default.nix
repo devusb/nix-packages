@@ -44,14 +44,14 @@ let
 in
 python3.pkgs.buildPythonApplication rec {
   pname = "mcp-atlassian";
-  version = "0.10.6";
+  version = "0.11.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "sooperset";
     repo = "mcp-atlassian";
     rev = "v${version}";
-    hash = "sha256-koNUnY6by44RplbbZDfEM8/8miEcO3Qmj0j+T3Yu0sw=";
+    hash = "sha256-chfANVb+HXNFsMDngW9s/YUV4KJaxC1rJ7GAVOWmJk4=";
   };
 
   build-system = [
