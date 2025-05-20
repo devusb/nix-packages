@@ -4,6 +4,7 @@
   fastmcp,
   python3,
   markdown-to-confluence,
+  types-cachetools,
   fetchFromGitHub,
 }:
 let
@@ -61,6 +62,7 @@ python3.pkgs.buildPythonApplication rec {
   dependencies = with python3.pkgs; [
     atlassian-python-api'
     beautifulsoup4
+    cachetools
     click
     fastmcp
     httpx
@@ -75,6 +77,7 @@ python3.pkgs.buildPythonApplication rec {
     starlette
     thefuzz
     trio
+    types-cachetools
     types-python-dateutil
     uvicorn
   ];
