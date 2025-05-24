@@ -31,14 +31,14 @@ let
 in
 python3.pkgs.buildPythonApplication rec {
   pname = "fastmcp";
-  version = "2.3.4";
+  version = "2.5.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "jlowin";
     repo = "fastmcp";
     rev = "v${version}";
-    hash = "sha256-JM8Vi3WRp+d8qMTGFDPgNg2hKevjVJuYkyYAyOx/2wQ=";
+    hash = "sha256-QyczoC/AylhKrHO4c4s2ALPHQuL+CtfOKHMIehlkPJQ=";
   };
 
   build-system = [
