@@ -12,7 +12,6 @@ let
     plex-mpv-sim = ./plex-mpv-shim.nix;
     sleep-on-lan = ./sleep-on-lan.nix;
     quakejs = ./quakejs.nix;
-    filebrowser = ./filebrowser.nix;
     hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
     unpackerr = ./unpackerr.nix;
   };
