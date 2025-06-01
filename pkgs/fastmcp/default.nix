@@ -1,34 +1,8 @@
 {
   lib,
-  coreutils,
   python3,
   fetchFromGitHub,
 }:
-let
-  mcp' = python3.pkgs.mcp.overridePythonAttrs (old: rec {
-    version = "1.8.1";
-    src = old.src.override {
-      tag = "v${version}";
-      hash = "sha256-r3B/2Nzb3Cai0/k7dMmcduWQWsbkhYW6UVyaE4BCz/Y=";
-    };
-
-    postPatch = ''
-      substituteInPlace pyproject.toml \
-        --replace-fail ', "uv-dynamic-versioning"' "" \
-        --replace-fail 'dynamic = ["version"]' 'version = "${version}"'
-      substituteInPlace tests/client/test_stdio.py \
-        --replace '/usr/bin/tee' '${lib.getExe' coreutils "tee"}'
-    '';
-
-    dependencies = old.dependencies ++ [
-      python3.pkgs.python-multipart
-    ];
-
-    nativeCheckInputs = old.nativeCheckInputs ++ [
-      python3.pkgs.requests
-    ];
-  });
-in
 python3.pkgs.buildPythonApplication rec {
   pname = "fastmcp";
   version = "2.5.0";
@@ -49,7 +23,7 @@ python3.pkgs.buildPythonApplication rec {
   dependencies = with python3.pkgs; [
     exceptiongroup
     httpx
-    mcp'
+    mcp
     openapi-pydantic
     python-dotenv
     rich
