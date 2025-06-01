@@ -31,7 +31,12 @@ python3.pkgs.buildPythonApplication rec {
   };
 
   build-system = [
+    python3.pkgs.pythonRelaxDepsHook
     python3.pkgs.hatchling
+  ];
+
+  pythonRelaxDeps = [
+    "fastmcp"
   ];
 
   dependencies = with python3.pkgs; [
