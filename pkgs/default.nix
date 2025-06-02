@@ -28,5 +28,6 @@ rec {
     inherit fastmcp types-cachetools;
     markdown-to-confluence = md2conf;
   };
+  xwvm = callPackage ./xwvm { };
 
 }

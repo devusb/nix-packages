@@ -14,6 +14,6 @@ jobs:
       - name: Update flake packages
         uses: devusb/nix-update-action@unstable-version
         with:
-          blacklist: "igb,pgdiff,quakejs,dreamm"
+          blacklist: "igb,pgdiff,quakejs,dreamm,xwvm"
           branch: "update_packages_action"
           pr-title: "Update packages"
