@@ -5,14 +5,14 @@
 }:
 python3.pkgs.buildPythonApplication rec {
   pname = "fastmcp";
-  version = "2.5.0";
+  version = "2.7.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "jlowin";
     repo = "fastmcp";
     rev = "v${version}";
-    hash = "sha256-QyczoC/AylhKrHO4c4s2ALPHQuL+CtfOKHMIehlkPJQ=";
+    hash = "sha256-UQV/hIu96ukpJxUhOux0mos0o6j4kvsFp2NJHa47tbw=";
   };
 
   build-system = [
