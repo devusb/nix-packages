@@ -6,18 +6,6 @@
   types-cachetools,
   fetchFromGitHub,
 }:
-let
-  atlassian-python-api' = python3.pkgs.atlassian-python-api.overridePythonAttrs (old: rec {
-    version = "4.0.3";
-    src = old.src.override {
-      tag = version;
-      hash = "sha256-po3oW6ncHx6uSFIGJUkbrevvgmvTiJ3eVLeNbYuc1us=";
-    };
-    propagatedBuildInputs = old.propagatedBuildInputs ++ [
-      python3.pkgs.typing-extensions
-    ];
-  });
-in
 python3.pkgs.buildPythonApplication rec {
   pname = "mcp-atlassian";
   version = "0.11.1";
@@ -40,7 +28,7 @@ python3.pkgs.buildPythonApplication rec {
   ];
 
   dependencies = with python3.pkgs; [
-    atlassian-python-api'
+    atlassian-python-api
     beautifulsoup4
     cachetools
     click
