@@ -6,16 +6,16 @@
 
 buildGoModule rec {
   pname = "simple-proxy";
-  version = "1.3.0";
+  version = "1.4.0";
 
   src = fetchFromGitHub {
     owner = "jthomperoo";
     repo = "simple-proxy";
     rev = "v${version}";
-    hash = "sha256-vqLxpW2Vi8omSMOXUNxV75c9U7k1qhyU0nQiv7IIvPs=";
+    hash = "sha256-O6SNyEetKQp2B3ntQpX2AJzqb43edbL9KBt/Z9Yfl28=";
   };
 
-  vendorHash = "sha256-5PN6a66hKWlqRVFQU+0c0fqVMAstUje0W25on30dpaM=";
+  vendorHash = "sha256-VYHx8P6uq6TZA0SlHcjKrBP4VVjYWZUl9dZ+pwUkqrU=";
 
   ldflags = [
     "-s"
