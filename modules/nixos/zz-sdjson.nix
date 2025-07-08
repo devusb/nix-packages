@@ -55,7 +55,7 @@ in
       environment.HOME = "/var/lib/zz-sdjson";
       startAt = cfg.refreshTime;
       serviceConfig = {
-        type = "oneshot";
+        Type = "oneshot";
         ExecStart = "${getExe' cfg.package "tv_grab_zz_sdjson"} --days ${builtins.toString cfg.days} --output /var/lib/zz-sdjson/guide.xml --config-file ${cfg.configFile}";
         User = "zz-sdjson";
         Group = "zz-sdjson";
