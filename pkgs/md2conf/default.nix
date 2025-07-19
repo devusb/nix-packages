@@ -6,14 +6,14 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "md2conf";
-  version = "0.3.4";
+  version = "0.4.2";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "hunyadi";
     repo = "md2conf";
     rev = version;
-    hash = "sha256-iUkLbsu/KTzPwBX9+bSwdXsxV6NDe7iTHF+fKHZH7R0=";
+    hash = "sha256-JMThLDNOGWxUMhoWdD5tnjqBtp7md0k7fR6zA+warig=";
   };
 
   build-system = [
