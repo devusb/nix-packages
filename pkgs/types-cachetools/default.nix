@@ -6,13 +6,13 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "types-cachetools";
-  version = "6.0.0.20250525";
+  version = "6.1.0.20250717";
   format = "setuptools";
 
   src = fetchPypi {
     inherit version;
     pname = "types_cachetools";
-    hash = "sha256-uvBvI0ysOutEwHiTRHugPs22wHQromB+KKNdOOaCGwI=";
+    hash = "sha256-SsyOJd6fX4TdF26oHc/6fLJDk4absuWeaS39ATmh5m8=";
   };
 
   # Module doesn't have tests
