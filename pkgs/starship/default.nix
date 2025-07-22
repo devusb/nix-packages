@@ -87,13 +87,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "starship-sf64";
-  version = "1.0.0";
+  version = "2.0.0";
 
   src = fetchFromGitHub {
     owner = "HarbourMasters";
     repo = "Starship";
     rev = "v${version}";
-    hash = "sha256-kaLLlLuonqE2DJcRlWR4tCEBNjwIYFlzeDLcYsvMO7I=";
+    hash = "sha256-pjftFMUE3UQuFe6WJI+n9GllV9uT2bvhHaUICaPHz+Q=";
     fetchSubmodules = true;
   };
 
