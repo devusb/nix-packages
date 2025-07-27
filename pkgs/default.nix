@@ -19,13 +19,6 @@ rec {
   simple-proxy = callPackage ./simple-proxy { };
   dreamm = callPackage ./dreamm { };
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
-  md2conf = callPackage ./md2conf { };
-  fastmcp = callPackage ./fastmcp { };
-  types-cachetools = callPackage ./types-cachetools { };
-  mcp-atlassian = callPackage ./mcp-atlassian {
-    inherit fastmcp types-cachetools;
-    markdown-to-confluence = md2conf;
-  };
   xmltv = callPackage ./xmltv { };
 
 }
