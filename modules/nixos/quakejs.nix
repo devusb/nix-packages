@@ -105,14 +105,13 @@ in
       };
       serverConfigFile = pkgs.writeTextFile {
         name = "q3ds.cfg";
-        text =
-          ''
-            set sv_hostname "${cfg.server.settings.hostname}"
-            set dedicated ${builtins.toString cfg.server.settings.dedicatedMode}
-            set rconpassword "${cfg.server.settings.password}"
+        text = ''
+          set sv_hostname "${cfg.server.settings.hostname}"
+          set dedicated ${builtins.toString cfg.server.settings.dedicatedMode}
+          set rconpassword "${cfg.server.settings.password}"
 
-          ''
-          + cfg.server.extraConfig;
+        ''
+        + cfg.server.extraConfig;
       };
       serverConfigFilePath = "${cfg.server.dataDir}/base/baseq3/${serverConfigFile.name}";
     in
