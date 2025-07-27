@@ -17,8 +17,6 @@ rec {
   podman-bootc = callPackage ./podman-bootc { };
   tv-sony = callPackage ./tv-sony { };
   simple-proxy = callPackage ./simple-proxy { };
-  starship-sf64 = callPackage ./starship { stdenv = pkgs.clangStdenv; };
-  Starship = starship-sf64;
   dreamm = callPackage ./dreamm { };
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
   md2conf = callPackage ./md2conf { };
