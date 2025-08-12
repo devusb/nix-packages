@@ -20,5 +20,6 @@ rec {
   dreamm = callPackage ./dreamm { };
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
   xmltv = callPackage ./xmltv { };
+  dlt = callPackage ./dlt { };
 
 }
