@@ -29,5 +29,6 @@ rec {
     markdown-to-confluence = md2conf;
   };
   xmltv = callPackage ./xmltv { };
+  dlt = callPackage ./dlt { };
 
 }
