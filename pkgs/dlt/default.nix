@@ -6,14 +6,14 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "dlt";
-  version = "1.15.0";
+  version = "1.16.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "dlt-hub";
     repo = "dlt";
     rev = version;
-    hash = "sha256-NyxMtTzrQYLq8/gYpRyAGlUqhE2sNeQ9R+RSyJEDEMI=";
+    hash = "sha256-m8XDKDpYzgPXRykx6qmK+0qDwTjug74YUJHRKrVP7Tw=";
   };
 
   build-system = [
