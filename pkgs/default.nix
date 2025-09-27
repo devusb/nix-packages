@@ -3,7 +3,7 @@ let
   inherit (pkgs) callPackage;
   linuxPackages = pkgs.linuxPackages_6_1;
 in
-rec {
+{
   go-simple-upload-server = callPackage ./go-simple-upload-server { };
   wolweb = callPackage ./wolweb { };
   jellyplex-watched = callPackage ./jellyplex-watched { };
@@ -21,5 +21,6 @@ rec {
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
   xmltv = callPackage ./xmltv { };
   dlt = callPackage ./dlt { };
+  setec = callPackage ./setec { };
 
 }
