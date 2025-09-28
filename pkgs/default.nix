@@ -14,7 +14,6 @@ in
   pgdiff = callPackage ./pgdiff { };
   vkv = callPackage ./vkv { };
   quakejs = callPackage ./quakejs { };
-  podman-bootc = callPackage ./podman-bootc { };
   tv-sony = callPackage ./tv-sony { };
   simple-proxy = callPackage ./simple-proxy { };
   dreamm = callPackage ./dreamm { };
