@@ -21,5 +21,6 @@ rec {
   hoarder-miniflux-webhook = callPackage ./hoarder-miniflux-webhook { };
   xmltv = callPackage ./xmltv { };
   dlt = callPackage ./dlt { };
+  terraform-repl = callPackage ./terraform-repl { };
 
 }
