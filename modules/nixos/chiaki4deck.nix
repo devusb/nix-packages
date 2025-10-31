@@ -15,7 +15,7 @@ in
   options = {
     programs.chiaki4deck = {
       enable = mkEnableOption (mdDoc "PlayStation Remote Play for Steam Deck");
-      package = mkPackageOption pkgs "chiaki4deck" { };
+      package = mkPackageOption pkgs "chiaki-ng" { };
       consoleAddress = mkOption {
         type = types.str;
         description = lib.mdDoc "IP Address of PlayStation";
