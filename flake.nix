@@ -66,7 +66,6 @@
                 "aarch64-darwin" = [
                   "quakejs"
                   "igb"
-                  "podman-bootc"
                   "starship-sf64"
                   "Starship"
                   "dreamm"
