@@ -6,13 +6,13 @@
 
 buildGoModule {
   pname = "setec";
-  version = "0-unstable-2025-11-16";
+  version = "0-unstable-2025-11-24";
 
   src = fetchFromGitHub {
     owner = "tailscale";
     repo = "setec";
-    rev = "aca8be938abc7c01625a389cddcc96d4d9b9de7c";
-    hash = "sha256-3a8/nOXUTnifOY1P48A/1tT/Mb6y5V2GXZOfG35Cits=";
+    rev = "db98deb54537046ce25af75b5c49c3fcff54ce36";
+    hash = "sha256-Y6iCUnqcrMugHkhGlXTanJgPsqIAcrAROx6+Mv8wvWs=";
   };
 
   vendorHash = "sha256-weThrhvk0rMDc0Y4apei0nRlvuhsrCF2yU/EvFZtwn8=";
