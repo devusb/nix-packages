@@ -1,0 +1,111 @@
+{
+  lib,
+  fetchFromGitHub,
+  fetchpatch,
+  SDL2,
+  stdenv,
+  cmake,
+  libGL,
+  libX11,
+  libXrandr,
+  libvdpau,
+  mpv,
+  ninja,
+  pkg-config,
+  python3,
+  kdePackages,
+  jellyfin-web,
+  withDbus ? stdenv.hostPlatform.isLinux,
+}:
+
+kdePackages.mkKdeDerivation {
+  pname = "jellyfin-media-player";
+  version = "1.12.0-unstable-2025-11-23";
+
+  src = fetchFromGitHub {
+    owner = "jellyfin";
+    repo = "jellyfin-media-player";
+    rev = "811ca84b24152889cfc629c20a5606455c4ba446";
+    sha256 = "sha256-5FChPPOew1Q3tBKoqMHVFUwHAbmY/rPV2J7sdW+ADGs=";
+  };
+
+  patches = [
+    # # fix the location of the jellyfin-web path
+    # ./fix-web-path.patch
+    # # disable update notifications since the end user can't simply download the release artifacts to update
+    # ./disable-update-notifications.patch
+
+    # # cmake 4 compatibility
+    # (fetchpatch {
+    #   url = "https://github.com/jellyfin/jellyfin-media-player/commit/6c5c603a1db489872832ed560581d98fdee89d6f.patch";
+    #   hash = "sha256-Blq7y7kOygbZ6uKxPJl9aDXJWqhE0jnM5GNEAwyQEA0=";
+    # })
+  ];
+
+  buildInputs = with kdePackages; [
+    SDL2
+    libGL
+    libX11
+    libXrandr
+    libvdpau
+    mpv
+    mpvqt
+    qtbase
+    qtwebchannel
+    qtwebengine
+    qtdeclarative
+    # qtx11extras
+  ]
+  ++ lib.optionals stdenv.hostPlatform.isLinux [
+    qtwayland
+  ];
+
+  nativeBuildInputs = [
+    cmake
+    ninja
+    pkg-config
+    python3
+    kdePackages.wrapQtAppsHook
+  ];
+
+  cmakeFlags = [
+    "-DQTROOT=${kdePackages.qtbase}"
+    "-GNinja"
+    (lib.cmakeBool "USE_STATIC_MPVQT" false)
+  ]
+  ++ lib.optionals (!withDbus) [
+    "-DLINUX_X11POWER=ON"
+  ];
+
+  preConfigure = ''
+    # link the jellyfin-web files to be copied by cmake (see fix-web-path.patch)
+    ln -s ${jellyfin-web}/share/jellyfin-web .
+  '';
+
+  postInstall = lib.optionalString stdenv.hostPlatform.isDarwin ''
+    mkdir -p $out/bin $out/Applications
+    mv "$out/Jellyfin Media Player.app" $out/Applications
+    ln -s "$out/Applications/Jellyfin Media Player.app/Contents/MacOS/Jellyfin Media Player" $out/bin/jellyfinmediaplayer
+  '';
+
+  meta = with lib; {
+    homepage = "https://github.com/jellyfin/jellyfin-media-player";
+    description = "Jellyfin Desktop Client based on Plex Media Player";
+    license = with licenses; [
+      gpl2Only
+      mit
+    ];
+    platforms = [
+      "aarch64-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    maintainers = with maintainers; [
+      jojosch
+      kranzes
+      paumr
+    ];
+    mainProgram = "jellyfinmediaplayer";
+  };
+}

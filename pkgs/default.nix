@@ -21,5 +21,6 @@ in
   xmltv = callPackage ./xmltv { };
   dlt = callPackage ./dlt { };
   setec = callPackage ./setec { };
+  jellyfin-media-player = callPackage ./jellyfin-media-player { };
 
 }
