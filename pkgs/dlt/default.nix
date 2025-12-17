@@ -55,7 +55,7 @@ python3.pkgs.buildPythonApplication rec {
     tomlkit
     typing-extensions
     tzdata
-  ];
+  ] ++ optional-dependencies.postgres;
 
   optional-dependencies = with python3.pkgs; {
     athena = [
