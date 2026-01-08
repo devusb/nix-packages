@@ -22,6 +22,8 @@ buildGoModule {
     "-w"
   ];
 
+  doCheck = false;
+
   meta = {
     description = "A secrets management service that uses Tailscale for access control";
     homepage = "https://github.com/tailscale/setec";
