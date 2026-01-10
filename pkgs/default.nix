@@ -21,5 +21,6 @@ in
   xmltv = callPackage ./xmltv { };
   dlt = callPackage ./dlt { };
   setec = callPackage ./setec { };
+  message-bridge = callPackage ./message-bridge { };
 
 }
