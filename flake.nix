@@ -71,8 +71,12 @@
                   "dreamm"
                   "extest"
                 ];
-                "x86_64-linux" = [ ];
-                "aarch64-linux" = [ ];
+                "x86_64-linux" = [
+                  "message-bridge"
+                ];
+                "aarch64-linux" = [
+                  "message-bridge"
+                ];
               };
               packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
                 lib.filterAttrs (n: _v: !(builtins.elem n blacklistPackages.${system})) self'.packages
