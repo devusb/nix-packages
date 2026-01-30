@@ -22,5 +22,6 @@ in
   dlt = callPackage ./dlt { };
   setec = callPackage ./setec { };
   message-bridge = callPackage ./message-bridge { };
+  agent-deck = callPackage ./agent-deck { };
 
 }
