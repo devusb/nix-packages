@@ -2,6 +2,7 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
+  git,
 }:
 
 buildGoModule rec {
@@ -17,6 +18,8 @@ buildGoModule rec {
 
   vendorHash = "sha256-r//Rgm41hwJHZ7T5mkOKB+xEsTOqMkI3iY0iOUDnjTM=";
 
+  nativeCheckInputs = [ git ];
+
   ldflags = [
     "-s"
     "-w"
@@ -25,7 +28,9 @@ buildGoModule rec {
     "-X=main.date=1970-01-01T00:00:00Z"
   ];
 
-  doCheck = false;
+  preCheck = ''
+    HOME=$(mktemp -d)
+  '';
 
   meta = {
     description = "Terminal session manager for AI coding agents. Built with Go + Bubble Tea";
