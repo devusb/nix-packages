@@ -15,6 +15,12 @@ let
     hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
     unpackerr = ./unpackerr.nix;
     zz-sdjson = ./zz-sdjson.nix;
+    calibre-web-automated = ./calibre-web-automated.nix;
+  };
+
+  # NixOS VM tests. Each value is a function { pkgs, self }: pkgs.nixosTest { ... }
+  tests = {
+    calibre-web-automated = import ./tests/calibre-web-automated.nix;
   };
 
   default =
@@ -23,4 +29,4 @@ let
       imports = builtins.attrValues modulesPerFile;
     };
 in
-modulesPerFile // { inherit default; }
+modulesPerFile // { inherit default tests; }
