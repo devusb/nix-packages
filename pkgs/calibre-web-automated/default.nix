@@ -77,9 +77,9 @@ python3Packages.buildPythonApplication rec {
     # static assets, and translations into the installed package tree where
     # constants.py expects them (BASE_DIR/cps/{templates,static,translations}).
     siteDir=$out/lib/${python3Packages.python.libPrefix}/site-packages/calibreweb
-    cp -r $src/cps/templates $siteDir/cps/templates
-    cp -r $src/cps/static $siteDir/cps/static
-    cp -r $src/cps/translations $siteDir/cps/translations
+    cp -r src/calibreweb/cps/templates $siteDir/cps/templates
+    cp -r src/calibreweb/cps/static $siteDir/cps/static
+    cp -r src/calibreweb/cps/translations $siteDir/cps/translations
 
     # Note: CONFIG_DIR in constants.py defaults to BASE_DIR (read-only in Nix).
     # The NixOS module uses BindPaths to mount the state directory at /config and
