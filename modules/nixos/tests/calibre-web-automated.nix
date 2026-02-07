@@ -5,8 +5,6 @@ in
 pkgs.testers.nixosTest {
   name = "calibre-web-automated";
 
-  globalTimeout = 60;
-
   nodes.machine =
     { pkgs, ... }:
     {
