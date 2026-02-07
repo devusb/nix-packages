@@ -23,5 +23,6 @@ in
   setec = callPackage ./setec { };
   message-bridge = callPackage ./message-bridge { };
   agent-deck = callPackage ./agent-deck { };
+  calibre-web-automated = callPackage ./calibre-web-automated { };
 
 }

@@ -1,0 +1,12 @@
+diff --git a/cps/__init__.py b/cps/__init__.py
+--- a/cps/__init__.py
++++ b/cps/__init__.py
+@@ -170,6 +170,9 @@ def create_app():
+     calibre_db.init_db()
+
++    if os.environ.get('__RUN_MIGRATIONS_AND_EXIT'):
++        sys.exit(0)
++
+     updater_thread.init_updater(config, web_server)
+     # Perform dry run of updater and exit afterward
+     if cli_param.dry_run:
