@@ -17,6 +17,8 @@ buildNpmPackage rec {
 
   npmDepsHash = "sha256-Y40ZnpHjEbYOjDrgwjLxCTyGWHGH6Zw8JADUiJc4hl4=";
 
+  npmFlags = [ "--legacy-peer-deps" ];
+
   meta = with lib; {
     description = "Jellystat is a free and open source Statistics App for Jellyfin";
     homepage = "https://github.com/CyferShepard/Jellystat";
