@@ -7,7 +7,6 @@
 
 let
   cfg = config.services.calibre-web-automated;
-  dataDir = if lib.hasPrefix "/" cfg.dataDir then cfg.dataDir else "/var/lib/${cfg.dataDir}";
 
   inherit (lib)
     concatStringsSep
@@ -46,11 +45,10 @@ in
       };
 
       dataDir = mkOption {
-        type = types.str;
-        default = "calibre-web-automated";
+        type = types.path;
+        default = "/var/lib/calibre-web-automated";
         description = ''
-          Where Calibre-Web Automated stores its data.
-          Either an absolute path, or the directory name below {file}`/var/lib`.
+          Directory for Calibre-Web Automated state and configuration.
         '';
       };
 
@@ -77,10 +75,20 @@ in
       options = {
         calibreLibrary = mkOption {
           type = types.nullOr types.path;
-          default = "${dataDir}/library";
-          defaultText = lib.literalExpression ''"''${dataDir}/library"'';
+          default = "${cfg.dataDir}/library";
+          defaultText = lib.literalExpression ''"''${cfg.dataDir}/library"'';
           description = ''
             Path to Calibre library.
+          '';
+        };
+
+        ingestDir = mkOption {
+          type = types.path;
+          default = "${cfg.dataDir}/ingest";
+          defaultText = lib.literalExpression ''"''${cfg.dataDir}/ingest"'';
+          description = ''
+            Path to the book ingest directory. Books placed here will be
+            automatically imported into the Calibre library.
           '';
         };
 
@@ -124,8 +132,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.tmpfiles.settings = lib.optionalAttrs (lib.hasPrefix "/" cfg.dataDir) {
-      "10-calibre-web-automated".${dataDir}.d = {
+    systemd.tmpfiles.settings."10-calibre-web-automated" = {
+      ${cfg.dataDir}.d = {
+        inherit (cfg) user group;
+        mode = "0700";
+      };
+      ${cfg.options.ingestDir}.d = {
         inherit (cfg) user group;
         mode = "0700";
       };
@@ -133,8 +145,8 @@ in
 
     systemd.services.calibre-web-automated =
       let
-        appDb = "${dataDir}/app.db";
-        gdriveDb = "${dataDir}/gdrive.db";
+        appDb = "${cfg.dataDir}/app.db";
+        gdriveDb = "${cfg.dataDir}/gdrive.db";
         calibreWebCmd = "${cfg.package}/bin/calibre-web -p ${appDb} -g ${gdriveDb}";
 
         settings = concatStringsSep ", " (
@@ -161,8 +173,10 @@ in
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
 
+        path = [ pkgs.calibre ];
         environment.CACHE_DIR = "/var/cache/calibre-web-automated";
         environment.CALIBRE_DBPATH = "/config";
+        environment.NETWORK_SHARE_MODE = "true";
 
         serviceConfig = {
           Type = "simple";
@@ -183,12 +197,12 @@ in
           ExecStart = "${calibreWebCmd} -i ${cfg.listen.ip}";
           Restart = "on-failure";
 
-          BindPaths = "${dataDir}:/config";
+          BindPaths = [
+            "${cfg.dataDir}:/config"
+            "${cfg.options.ingestDir}:/cwa-book-ingest"
+          ];
           CacheDirectory = "calibre-web-automated";
           CacheDirectoryMode = "0750";
-        }
-        // lib.optionalAttrs (!(lib.hasPrefix "/" cfg.dataDir)) {
-          StateDirectory = cfg.dataDir;
         };
       };
 
