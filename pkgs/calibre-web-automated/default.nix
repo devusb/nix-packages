@@ -87,6 +87,15 @@ python3Packages.buildPythonApplication rec {
     # runtime (for thumbnails, migrations, etc.).
   '';
 
+  # The entry point bakes deps into site.addsitedir calls, but subprocess
+  # calls to scripts (ingest_processor.py, convert_library.py, etc.) spawn
+  # a fresh python3 that doesn't inherit those. Export PYTHONPATH so child
+  # processes can find the package's dependencies and the scripts directory.
+  makeWrapperArgs = [
+    "--prefix" "PYTHONPATH" ":"
+    "${placeholder "out"}/share/calibre-web-automated/scripts:${python3Packages.makePythonPath dependencies}"
+  ];
+
   build-system = [ python3Packages.setuptools ];
 
   dependencies = with python3Packages; [
@@ -103,6 +112,7 @@ python3Packages.buildPythonApplication rec {
     flask-wtf
     iso-639
     lxml
+    mutagen
     netifaces-plus
     pycountry
     pypdf
