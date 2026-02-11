@@ -50,6 +50,11 @@ python3Packages.buildPythonApplication rec {
       src/calibreweb/cps/search_metadata.py \
       src/calibreweb/cps/tasks/duplicate_scan.py \
       src/calibreweb/cps/web.py \
+      scripts/auto_library.py \
+      scripts/convert_library.py \
+      scripts/cover_enforcer.py \
+      scripts/ingest_processor.py \
+      scripts/kindle_epub_fixer.py \
       --replace-fail '/app/calibre-web-automated' "$out/share/calibre-web-automated"
 
     # Bake version info so it shows up in the admin UI
@@ -92,7 +97,9 @@ python3Packages.buildPythonApplication rec {
   # a fresh python3 that doesn't inherit those. Export PYTHONPATH so child
   # processes can find the package's dependencies and the scripts directory.
   makeWrapperArgs = [
-    "--prefix" "PYTHONPATH" ":"
+    "--prefix"
+    "PYTHONPATH"
+    ":"
     "${placeholder "out"}/share/calibre-web-automated/scripts:${python3Packages.makePythonPath dependencies}"
   ];
 
