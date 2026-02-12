@@ -1,5 +1,6 @@
 {
   lib,
+  stdenv,
   fetchFromGitHub,
   python3Packages,
 }:
@@ -205,6 +206,11 @@ python3Packages.buildPythonApplication rec {
   ];
 
   nativeCheckInputs = lib.concatAttrValues optional-dependencies;
+
+  # rapidfuzz (transitive dep via scholarly) fails to build on Darwin:
+  # its CMake atomic check hardcodes -std=c++11 on Apple which is
+  # incompatible with the C++20 requirement from taskflow 3.11.
+  doCheck = !stdenv.hostPlatform.isDarwin;
 
   pythonImportsCheck = [ "calibreweb" ];
 
