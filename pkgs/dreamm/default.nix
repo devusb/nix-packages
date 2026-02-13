@@ -3,12 +3,15 @@
   stdenv,
   fetchzip,
   fetchurl,
+  autoAddDriverRunpath,
   autoPatchelfHook,
   makeDesktopItem,
   copyDesktopItems,
   alsa-lib,
   curl,
   SDL2,
+  libgbm,
+  libxcb,
 }:
 
 let
@@ -20,7 +23,7 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "dreamm";
-  version = "3.0.3";
+  version = "4.0b17";
 
   src =
     let
@@ -31,17 +34,18 @@ stdenv.mkDerivation rec {
         aarch64-linux = "linux-arm64";
       };
       hash = selectSystem {
-        x86_64-linux = "sha256-lVgt0SVm8ml1nFTDXnXpaYRI+1HDVwtLIztAq+re00E=";
-        aarch64-linux = "sha256-zG/8ie3p9WI7D5ukVp8cQm+zhWysnzQ8qG5vrHIdyLs=";
+        x86_64-linux = "sha256-FY7wCiNv86NeKkV/nB+Ty5yAIO7VClNm3rpRaDqjie8=";
+        aarch64-linux = "";
       };
     in
     fetchzip {
-      url = "https://aarongiles.com/dreamm/releases/dreamm-${version}-${suffix}.tgz";
+      url = "https://aarongiles.com/dreamm/releases/4.0/dreamm-${version}-${suffix}.tgz";
       inherit hash;
       stripRoot = false;
     };
 
   nativeBuildInputs = [
+    autoAddDriverRunpath
     autoPatchelfHook
     copyDesktopItems
   ];
@@ -52,10 +56,14 @@ stdenv.mkDerivation rec {
     SDL2
   ];
 
+  runtimeDependencies = [
+    libgbm
+    libxcb
+  ];
+
   installPhase = ''
     runHook preInstall
     install -D dreamm $out/bin/dreamm
-    install -D mt32emu-dreamm.so $out/bin/mt32emu-dreamm.so
     runHook postInstall
   '';
 
