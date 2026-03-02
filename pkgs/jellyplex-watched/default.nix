@@ -6,14 +6,14 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "jellyplex-watched";
-  version = "8.5.0";
+  version = "8.5.1";
   pyproject = false;
 
   src = fetchFromGitHub {
     owner = "luigi311";
     repo = "JellyPlex-Watched";
     rev = "v${version}";
-    hash = "sha256-6wxvEoOBQjMNLeCDm8w+xLDEGevdJ8Ke+t2AotfPIMw=";
+    hash = "sha256-Nz4rktd8YxzESjlOzBgFDrKN352ViyJkNymt1ZXLRXY=";
   };
 
   propagatedBuildInputs = with python3.pkgs; [
