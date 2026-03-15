@@ -4,6 +4,18 @@
   fetchFromGitHub,
   python3Packages,
 }:
+let
+  flask-limiter' = python3Packages.flask-limiter.overrideAttrs (oldAttrs: {
+    version = "3.12";
+    src = fetchFromGitHub {
+      owner = "alisaifee";
+      repo = "flask-limiter";
+      tag = "3.12";
+      hash = "sha256-3GFbLQExd4c3Cyr7UDX/zOAfedOluXMwCbBhOgoKfn0=";
+    };
+    pythonRelaxDeps = (oldAttrs.pythonRelaxDeps or [ ]) ++ [ "rich" ];
+  });
+in
 python3Packages.buildPythonApplication rec {
   pname = "calibre-web-automated";
   version = "4.0.6";
@@ -115,7 +127,7 @@ python3Packages.buildPythonApplication rec {
     flask
     flask-babel
     flask-httpauth
-    flask-limiter
+    flask-limiter'
     flask-principal
     flask-wtf
     iso-639
