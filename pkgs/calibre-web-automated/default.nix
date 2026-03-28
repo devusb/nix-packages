@@ -211,10 +211,12 @@ python3Packages.buildPythonApplication rec {
     "flask"
     "flask-limiter"
     "lxml"
+    "pycountry"
     "pypdf"
     "regex"
     "tornado"
     "unidecode"
+    "wand"
   ];
 
   nativeCheckInputs = lib.concatAttrValues optional-dependencies;
