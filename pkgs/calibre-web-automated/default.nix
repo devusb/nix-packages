@@ -2,9 +2,10 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  python3Packages,
+  python314Packages,
 }:
 let
+  python3Packages = python314Packages;
   flask-limiter' = python3Packages.flask-limiter.overrideAttrs (oldAttrs: {
     version = "3.12";
     src = fetchFromGitHub {
