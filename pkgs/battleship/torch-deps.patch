@@ -1,0 +1,14 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -152,6 +152,10 @@ ExternalProject_Add(TorchExternal
+             -DBUILD_MARIO_ARTIST=OFF
+             -DBUILD_NAUDIO=ON
+             -DBUILD_SSB64=ON
++            -DFETCHCONTENT_SOURCE_DIR_LIBGFXD=@libgfxd_src@
++            -DFETCHCONTENT_SOURCE_DIR_YAML-CPP=@yaml-cpp_src@
++            -DFETCHCONTENT_SOURCE_DIR_SPDLOG=@spdlog_src@
++            -DFETCHCONTENT_SOURCE_DIR_TINYXML2=@tinyxml2_src@
+     )
+
+     ExternalProject_Get_Property(TorchExternal install_dir)
