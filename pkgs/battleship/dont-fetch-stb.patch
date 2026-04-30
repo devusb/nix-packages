@@ -1,0 +1,30 @@
+diff --git a/libultraship/cmake/dependencies/common.cmake b/libultraship/cmake/dependencies/common.cmake
+index 94c630c..b944db6 100644
+--- a/libultraship/cmake/dependencies/common.cmake
++++ b/libultraship/cmake/dependencies/common.cmake
+@@ -51,24 +51,7 @@ if(INCLUDE_MPQ_SUPPORT)
+ endif()
+
+ #=================== STB ===================
+-set(STB_DIR ${CMAKE_BINARY_DIR}/_deps/stb)
+-file(DOWNLOAD "https://github.com/nothings/stb/raw/0bc88af4de5fb022db643c2d8e549a0927749354/stb_image.h" "${STB_DIR}/stb_image.h")
+-# If network download failed (sandbox/proxy/offline), fall back to vendored copy used by Torch.
+-if (EXISTS "${STB_DIR}/stb_image.h")
+-    file(SIZE "${STB_DIR}/stb_image.h" STB_IMAGE_SIZE)
+-else()
+-    set(STB_IMAGE_SIZE 0)
+-endif()
+-if (STB_IMAGE_SIZE EQUAL 0)
+-    set(STB_FALLBACK "${CMAKE_SOURCE_DIR}/torch/lib/n64graphics/stb_image.h")
+-    if (EXISTS "${STB_FALLBACK}")
+-        message(WARNING "stb_image.h download failed/empty; using fallback at ${STB_FALLBACK}")
+-        file(COPY "${STB_FALLBACK}" DESTINATION "${STB_DIR}")
+-    else()
+-        message(FATAL_ERROR "stb_image.h download failed and fallback file is missing: ${STB_FALLBACK}")
+-    endif()
+-endif()
+-file(WRITE "${STB_DIR}/stb_impl.c" "#define STB_IMAGE_IMPLEMENTATION\n#include \"stb_image.h\"")
++set(STB_DIR ${CMAKE_SOURCE_DIR}/stb)
+
+ add_library(stb STATIC)
+

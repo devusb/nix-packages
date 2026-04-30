@@ -1,0 +1,21 @@
+Allow overriding the target framerate via the `gTargetFPS` CVar (default 60).
+Useful on low-end hardware where 30fps is more stable than struggling at 60.
+
+diff --git a/port/port.cpp b/port/port.cpp
+--- a/port/port.cpp
++++ b/port/port.cpp
+@@ -613,6 +613,14 @@ int PortInit(int argc, char* argv[]) {
+ 		auto window = std::make_shared<Fast::Fast3dWindow>();
+ 		port_log("SSB64: calling InitWindow ...\n");
+ 		if (!sContext->InitWindow(window)) { port_log("SSB64: InitWindow failed\n"); return 1; }
++
++		// Allow overriding the target framerate via CVar (default 60).
++		// Useful on low-end hardware where 30fps is more stable.
++		int targetFps = sContext->GetConsoleVariables()->GetInteger("gTargetFPS", 60);
++		if (targetFps > 0 && targetFps != 60) {
++			window->SetTargetFps(targetFps);
++			port_log("SSB64: TargetFPS override -> %d\n", targetFps);
++		}
+ 		port_log("SSB64: Window OK\n");
+
+ 		// Esc Menu screen, Toggle with Esc.

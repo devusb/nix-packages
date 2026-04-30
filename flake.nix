@@ -70,6 +70,7 @@
                   "Starship"
                   "dreamm"
                   "extest"
+                  "battleship"
                 ];
                 "x86_64-linux" = [
                   "message-bridge"
