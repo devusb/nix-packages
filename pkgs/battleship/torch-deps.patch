@@ -1,0 +1,15 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1e35843..859fc87 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -308,6 +308,10 @@ ExternalProject_Add(TorchExternal
+         -DUSE_STANDALONE=ON
+         -DBUILD_SSB64=ON
+         -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/torch-install
++        -DFETCHCONTENT_SOURCE_DIR_LIBGFXD=@libgfxd_src@
++        -DFETCHCONTENT_SOURCE_DIR_YAML-CPP=@yaml-cpp_src@
++        -DFETCHCONTENT_SOURCE_DIR_SPDLOG=@spdlog_src@
++        -DFETCHCONTENT_SOURCE_DIR_TINYXML2=@tinyxml2_src@
+ )
+ 
+ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")

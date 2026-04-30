@@ -1,0 +1,19 @@
+diff --git a/port/port.cpp b/port/port.cpp
+index 1da3861..2c89721 100644
+--- a/port/port.cpp
++++ b/port/port.cpp
+@@ -301,6 +301,14 @@ int PortInit(int argc, char* argv[]) {
+ 	{
+ 		auto window = std::make_shared<Fast::Fast3dWindow>();
+ 		if (!sContext->InitWindow(window)) { port_log("SSB64: InitWindow failed\n"); return 1; }
++
++		// Allow overriding the target framerate via CVar (default 60).
++		// Useful on low-end hardware where 30fps is more stable.
++		int targetFps = sContext->GetConsoleVariables()->GetInteger("gTargetFPS", 60);
++		if (targetFps > 0 && targetFps != 60) {
++			window->SetTargetFps(targetFps);
++			port_log("SSB64: TargetFPS override -> %d\n", targetFps);
++		}
+ 		port_log("SSB64: Window OK\n");
+ 
+ 		// Top-of-screen menu bar (File / View / Help). Toggle with F1.
