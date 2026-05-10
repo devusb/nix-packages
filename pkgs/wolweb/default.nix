@@ -7,7 +7,7 @@
 
 buildGoModule {
   pname = "wolweb";
-  version = "1-unstable-2025-08-04";
+  version = "0-unstable-2025-08-04";
 
   src = fetchFromGitHub {
     owner = "sameerdhoot";
