@@ -214,6 +214,7 @@ python3Packages.buildPythonApplication rec {
     "pycountry"
     "pypdf"
     "regex"
+    "requests"
     "tornado"
     "unidecode"
     "wand"
