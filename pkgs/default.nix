@@ -23,5 +23,6 @@ in
   setec = callPackage ./setec { };
   message-bridge = callPackage ./message-bridge { };
   calibre-web-automated = callPackage ./calibre-web-automated { };
+  dual-sense-haptic-helper = callPackage ./Dualsense-haptic-helper { };
 
 }
