@@ -74,6 +74,8 @@
                   "dreamm"
                   "extest"
                   "battleship"
+                  "openjkdf2"
+                  "openjkdf2-gles"
                 ];
                 "x86_64-linux" = [
                   "message-bridge"
