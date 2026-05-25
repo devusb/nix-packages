@@ -43,6 +43,7 @@
           _module.args.pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
+            overlays = [ self.overlays.default ];
           };
 
           treefmt = {
@@ -59,7 +60,8 @@
             ];
           };
 
-          packages = import ./pkgs { inherit pkgs; };
+          legacyPackages = pkgs;
+          packages = lib.getAttrs (builtins.attrNames (import ./overlay.nix { } { })) pkgs;
 
           checks =
             let
@@ -90,7 +92,7 @@
                     inherit pkgs;
                     self = self;
                   })
-                ) (import ./modules/nixos { inherit inputs; }).tests
+                ) (import ./modules/nixos { inherit inputs self; }).tests
               );
             in
             packages // nixosTests;
@@ -98,11 +100,11 @@
 
       flake = {
         overlays = {
-          default = final: prev: import ./pkgs { pkgs = prev; };
+          default = import ./overlay.nix;
         };
 
-        nixosModules = import ./modules/nixos { inherit inputs; };
-        darwinModules = import ./modules/darwin { inherit inputs; };
+        nixosModules = import ./modules/nixos { inherit inputs self; };
+        darwinModules = import ./modules/darwin { inherit inputs self; };
         homeManagerModules = import ./modules/home-manager { inherit inputs; };
       };
 

@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 let
   modulesPerFile = {
-    overlay = import ./overlay.nix { inherit inputs; };
+    overlay = import ./overlay.nix { inherit inputs self; };
     message-bridge = ./message-bridge.nix;
   };
 
