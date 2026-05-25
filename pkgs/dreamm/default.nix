@@ -2,25 +2,18 @@
   lib,
   stdenv,
   fetchzip,
-  fetchurl,
   autoPatchelfHook,
   makeDesktopItem,
   copyDesktopItems,
   alsa-lib,
   curl,
   SDL2,
+  util-linux,
 }:
 
-let
-  dreammIcon = fetchurl {
-    url = "https://aarongiles.com/dreamm/docs/icons/dreamm_icon.png";
-    hash = "sha256-vPRIABG2EUqpGAqJkSHknUI5g/aF/stbcftGGWE8wfs=";
-    name = "dreamm_icon.png";
-  };
-in
 stdenv.mkDerivation rec {
   pname = "dreamm";
-  version = "3.0.3";
+  version = "4.0";
 
   src =
     let
@@ -31,12 +24,12 @@ stdenv.mkDerivation rec {
         aarch64-linux = "linux-arm64";
       };
       hash = selectSystem {
-        x86_64-linux = "sha256-lVgt0SVm8ml1nFTDXnXpaYRI+1HDVwtLIztAq+re00E=";
-        aarch64-linux = "sha256-zG/8ie3p9WI7D5ukVp8cQm+zhWysnzQ8qG5vrHIdyLs=";
+        x86_64-linux = "sha256-ngkoR1sY7x9oiqA8eIbiL2UveCx3H5Lzk52u7PIDmGk=";
+        aarch64-linux = "sha256-qDMzaZh4hrRBo7aKDW0TUO+zNZqT6x9cmiF/jx76+Oo=";
       };
     in
     fetchzip {
-      url = "https://aarongiles.com/dreamm/releases/dreamm-${version}-${suffix}.tgz";
+      url = "https://dreamm.aarongiles.com/releases/dreamm-${version}-${suffix}.tgz";
       inherit hash;
       stripRoot = false;
     };
@@ -50,12 +43,14 @@ stdenv.mkDerivation rec {
     alsa-lib
     curl
     SDL2
+    util-linux
   ];
 
   installPhase = ''
     runHook preInstall
     install -D dreamm $out/bin/dreamm
-    install -D mt32emu-dreamm.so $out/bin/mt32emu-dreamm.so
+    install -Dm644 dreamm.png $out/share/icons/hicolor/256x256/apps/dreamm.png
+    install -Dm644 readme.txt $out/share/doc/dreamm/readme.txt
     runHook postInstall
   '';
 
@@ -65,7 +60,7 @@ stdenv.mkDerivation rec {
       name = "dreamm";
       desktopName = "DREAMM";
       comment = "Bespoke emulator for LucasArts games";
-      icon = dreammIcon;
+      icon = "dreamm";
       exec = "dreamm";
       categories = [
         "Game"
@@ -85,7 +80,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "Bespoke emulator for LucasArts games";
-    homepage = "https://aarongiles.com/dreamm/";
+    homepage = "https://dreamm.aarongiles.com/";
     sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     license = with lib.licenses; [
       bsd3
