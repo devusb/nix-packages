@@ -4,15 +4,6 @@
   fetchFromGitHub,
 }:
 
-let
-  fsspec = python3.pkgs.fsspec.overridePythonAttrs (old: rec {
-    version = "2025.10.0";
-    src = old.src.override {
-      tag = version;
-      hash = "sha256-rIn2m3lRhlJwkB54X4sRT9JH+e4pIIEt7dPjnknczjs=";
-    };
-  });
-in
 python3.pkgs.buildPythonApplication rec {
   pname = "dlt";
   version = "1.27.0";
