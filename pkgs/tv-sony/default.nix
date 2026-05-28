@@ -14,7 +14,7 @@ let
 in
 buildPythonPackage {
   pname = "tv-sony";
-  version = "0-unstable-2023-01-19";
+  version = "0.2.3-unstable-2023-01-19";
   pyproject = true;
 
   src = fetchFromGitHub {
