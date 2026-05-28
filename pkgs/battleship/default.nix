@@ -122,7 +122,7 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper
     ninja
     pkg-config
-    python3
+    (python3.withPackages (ps: [ ps.pillow ]))
     zip
   ];
 
