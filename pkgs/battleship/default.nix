@@ -96,13 +96,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "battleship";
-  version = "1.2";
+  version = "1.3";
 
   src = fetchFromGitHub {
     owner = "JRickey";
     repo = "BattleShip";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-WyqKoYZLh7FaU+C8nJ1h9HPF7VtKs1FIKJBV9OZdybU=";
+    hash = "sha256-98KpdrVssZOEUUNhwIiJVCaTUn+QWbSUZU17zvK3WlA=";
     fetchSubmodules = true;
   };
 
