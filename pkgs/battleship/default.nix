@@ -4,7 +4,7 @@
   applyPatches,
   writeTextFile,
   fetchurl,
-  stdenv,
+  clangStdenv,
   replaceVars,
   srcOnly,
   cmake,
@@ -94,7 +94,7 @@ let
   };
 
 in
-stdenv.mkDerivation (finalAttrs: {
+clangStdenv.mkDerivation (finalAttrs: {
   pname = "battleship";
   version = "1.4.1-hotfix";
 
@@ -148,6 +148,10 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.cmakeBool "NON_MATCHING" true)
     (lib.cmakeBool "NON_EQUIVALENT" true)
     (lib.cmakeBool "NON_PORTABLE" true)
+    (lib.cmakeBool "DISABLE_SCRIPTING" true)
+    # discord-rpc adds a clangformat target when clang-format is found; the
+    # bundled .clang-format has a duplicate key newer clang-format rejects
+    (lib.cmakeFeature "CLANG_FORMAT_SUFFIX" "-disabled")
     (lib.cmakeFeature "FETCHCONTENT_SOURCE_DIR_IMGUI" "${imgui'}")
     (lib.cmakeFeature "FETCHCONTENT_SOURCE_DIR_THREADPOOL" "${thread_pool}")
     (lib.cmakeFeature "FETCHCONTENT_SOURCE_DIR_PRISM" "${prism}")
