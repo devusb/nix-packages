@@ -13,7 +13,6 @@ let
     sleep-on-lan = ./sleep-on-lan.nix;
     quakejs = ./quakejs.nix;
     hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
-    unpackerr = ./unpackerr.nix;
     zz-sdjson = ./zz-sdjson.nix;
     calibre-web-automated = ./calibre-web-automated.nix;
   };
