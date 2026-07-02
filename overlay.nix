@@ -1,4 +1,5 @@
 final: prev: {
+  am2rlauncher = final.callPackage ./pkgs/am2rlauncher { };
   go-simple-upload-server = final.callPackage ./pkgs/go-simple-upload-server { };
   wolweb = final.callPackage ./pkgs/wolweb { };
   jellyplex-watched = final.callPackage ./pkgs/jellyplex-watched { };
