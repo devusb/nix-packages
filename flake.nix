@@ -67,6 +67,7 @@
             let
               blacklistPackages = {
                 "aarch64-darwin" = [
+                  "am2rlauncher"
                   "quakejs"
                   "igb"
                   "starship-sf64"
@@ -81,6 +82,7 @@
                   "message-bridge"
                 ];
                 "aarch64-linux" = [
+                  "am2rlauncher"
                   "message-bridge"
                 ];
               };
