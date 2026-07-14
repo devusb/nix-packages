@@ -26,7 +26,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "openjkdf2";
-  version = "0.9.8";
+  version = "0.9.9";
 
   src = fetchFromGitHub {
     owner = "shinyquagsire23";
@@ -37,7 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
     # shims below. Vendored libsmacker/libsmusher/mbedtls live under
     # src/external/ (not submodules) and are still used.
     fetchSubmodules = true;
-    hash = "sha256-axqJ0tPKB1zwH26ovatef7SvShsIZlJFtp80iaEFy3k=";
+    hash = "sha256-uQLITmw7IE5Dj7U7BBChLvsUHvyY5jjj3E5ihhr2Thc=";
   };
 
   nativeBuildInputs = [
