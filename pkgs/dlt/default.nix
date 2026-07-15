@@ -3,7 +3,18 @@
   python3,
   fetchFromGitHub,
 }:
-
+let
+  jsonpath-ng' = python3.pkgs.jsonpath-ng.overridePythonAttrs (old: {
+    version = "1.8.0";
+    src = fetchFromGitHub {
+      owner = "h2non";
+      repo = "jsonpath-ng";
+      tag = "v1.8.0";
+      hash = "sha256-soCSMOHJpAM/tOaydvv8tGS/VewtSMBteDNipSPttI0=";
+    };
+    nativeCheckInputs = (old.nativeCheckInputs or [ ]) ++ [ python3.pkgs.hypothesis ];
+  });
+in
 python3.pkgs.buildPythonApplication rec {
   pname = "dlt";
   version = "1.29.0";
@@ -27,7 +38,7 @@ python3.pkgs.buildPythonApplication rec {
     giturlparse
     hexbytes
     humanize
-    jsonpath-ng
+    jsonpath-ng'
     orjson
     packaging
     pathvalidate
