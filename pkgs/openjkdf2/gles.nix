@@ -8,8 +8,8 @@ openjkdf2.overrideAttrs (old: {
 
   patches = (old.patches or [ ]) ++ [
     (fetchpatch {
-      url = "https://github.com/devusb/OpenJKDF2/commit/6fb59b2deb8be5ebf95abcf3a3685afb2565c952.patch";
-      hash = "sha256-Y3OIfiqYgk9axleUYPGF/Z0Jrvs1pvIdj5OnKInnFic=";
+      url = "https://github.com/devusb/OpenJKDF2/commit/21fa1b7d1175033dd0ef0072ff604799fb1017b2.patch";
+      hash = "sha256-9EQFUyXDy/UKBCG1l81YTKGEow2QSIK1kS7eVkyhl8w=";
     })
   ];
 
