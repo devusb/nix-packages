@@ -14,12 +14,10 @@ let
     quakejs = ./quakejs.nix;
     hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
     zz-sdjson = ./zz-sdjson.nix;
-    calibre-web-automated = ./calibre-web-automated.nix;
   };
 
   # NixOS VM tests. Each value is a function { pkgs, self }: pkgs.nixosTest { ... }
   tests = {
-    calibre-web-automated = import ./tests/calibre-web-automated.nix;
   };
 
   default =

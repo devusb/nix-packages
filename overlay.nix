@@ -18,7 +18,6 @@ final: prev: {
   dlt = final.callPackage ./pkgs/dlt { };
   setec = final.callPackage ./pkgs/setec { };
   message-bridge = final.callPackage ./pkgs/message-bridge { };
-  calibre-web-automated = final.callPackage ./pkgs/calibre-web-automated { };
   battleship = final.callPackage ./pkgs/battleship { };
   openjkdf2 = final.callPackage ./pkgs/openjkdf2 { };
   openjkdf2-gles = final.callPackage ./pkgs/openjkdf2/gles.nix { };
