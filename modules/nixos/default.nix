@@ -14,6 +14,7 @@ let
     quakejs = ./quakejs.nix;
     hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
     zz-sdjson = ./zz-sdjson.nix;
+    reversepuck = ./reversepuck.nix;
   };
 
   # NixOS VM tests. Each value is a function { pkgs, self }: pkgs.nixosTest { ... }
