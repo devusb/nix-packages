@@ -21,4 +21,5 @@ final: prev: {
   battleship = final.callPackage ./pkgs/battleship { };
   openjkdf2 = final.callPackage ./pkgs/openjkdf2 { };
   openjkdf2-gles = final.callPackage ./pkgs/openjkdf2/gles.nix { };
+  reversepuck = final.callPackage ./pkgs/reversepuck { };
 }
