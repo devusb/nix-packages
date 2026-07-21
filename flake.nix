@@ -77,6 +77,7 @@
                   "battleship"
                   "openjkdf2"
                   "openjkdf2-gles"
+                  "reversepuck"
                 ];
                 "x86_64-linux" = [
                   "message-bridge"
