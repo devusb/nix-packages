@@ -96,13 +96,13 @@ let
 in
 clangStdenv.mkDerivation (finalAttrs: {
   pname = "battleship";
-  version = "1.5.2";
+  version = "1.6";
 
   src = fetchFromGitHub {
     owner = "JRickey";
     repo = "BattleShip";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-7AWlTycDQTXp+x3yrP3s6oSi0qz8ouyXZ+ldvu01z4c=";
+    hash = "sha256-ONpDM5IOaepnKGyiQzhZ3eSMreARL49vIHkLIovHkNc=";
     fetchSubmodules = true;
   };
 
