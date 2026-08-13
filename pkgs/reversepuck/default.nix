@@ -7,14 +7,14 @@
 
 python3.pkgs.buildPythonApplication (finalAttrs: {
   pname = "reversepuck";
-  version = "0.9.40";
+  version = "0.9.42";
   pyproject = false;
 
   src = fetchFromGitHub {
     owner = "safijari";
     repo = "openpuck";
     tag = finalAttrs.version;
-    hash = "sha256-oVhBChFbnrzjMczIO5hOrQZ0yWx62eQjJgKX2hgYz6I=";
+    hash = "sha256-M3B0unzC2CzAW2T3HVMicIuFG01xT6UyD862fy4GM54=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
