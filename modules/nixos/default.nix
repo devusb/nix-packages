@@ -15,10 +15,11 @@ let
     hoarder-miniflux-webhook = ./hoarder-miniflux-webhook.nix;
     zz-sdjson = ./zz-sdjson.nix;
     reversepuck = ./reversepuck.nix;
+    heb-mcp = ./heb-mcp;
   };
 
-  # NixOS VM tests. Each value is a function { pkgs, self }: pkgs.nixosTest { ... }
   tests = {
+    heb-mcp = import ./heb-mcp/test.nix;
   };
 
   default =
