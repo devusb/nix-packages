@@ -78,6 +78,7 @@
                   "openjkdf2"
                   "openjkdf2-gles"
                   "reversepuck"
+                  "usbeehive"
                 ];
                 "x86_64-linux" = [
                   "message-bridge"

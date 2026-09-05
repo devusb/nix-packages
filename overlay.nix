@@ -23,4 +23,5 @@ final: prev: {
   openjkdf2-gles = final.callPackage ./pkgs/openjkdf2/gles.nix { };
   reversepuck = final.callPackage ./pkgs/reversepuck { };
   heb-mcp = final.callPackage ./pkgs/heb-mcp { };
+  usbeehive = final.callPackage ./pkgs/usbeehive { };
 }
