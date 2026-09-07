@@ -5,6 +5,7 @@
   symlinkJoin,
   cef-binary,
   fetchFromGitHub,
+  fetchpatch,
   rustPlatform,
   pkg-config,
   wrapGAppsHook4,
@@ -56,6 +57,14 @@ rustPlatform.buildRustPackage {
     rev = "28f2cf16a1f1b819884dd6a72919ca55bdf9bd73";
     hash = "sha256-fMk5bZRMi6FgTGigu3/fYX9sj1HmKW5mp+Ipc+BO+tQ=";
   };
+
+  patches = [
+    (fetchpatch {
+      name = "screensaver-idle-inhibit.patch";
+      url = "https://github.com/devusb/jellium-desktop/commit/146a638cbcc57c83e4fc0988964d3837ffb831de.patch";
+      hash = "sha256-unPV8WRoMSb0d0RK2pbZXaCC45CULjjBBeki3RRAD7o=";
+    })
+  ];
 
   cargoRoot = "src";
   cargoHash = "sha256-JFFQjOw4Iu6NiQScQqYg/J7XEkLbHCDa+XS12VJJdVI=";
