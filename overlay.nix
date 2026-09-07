@@ -24,4 +24,5 @@ final: prev: {
   reversepuck = final.callPackage ./pkgs/reversepuck { };
   heb-mcp = final.callPackage ./pkgs/heb-mcp { };
   usbeehive = final.callPackage ./pkgs/usbeehive { };
+  jellium-desktop = final.callPackage ./pkgs/jellium-desktop { };
 }

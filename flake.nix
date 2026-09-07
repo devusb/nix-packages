@@ -79,6 +79,7 @@
                   "openjkdf2-gles"
                   "reversepuck"
                   "usbeehive"
+                  "jellium-desktop"
                 ];
                 "x86_64-linux" = [
                   "message-bridge"
