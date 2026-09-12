@@ -57,6 +57,7 @@ python3.pkgs.buildPythonApplication rec {
     tomlkit
     typing-extensions
     tzdata
+    croniter
   ];
 
   optional-dependencies = with python3.pkgs; {
