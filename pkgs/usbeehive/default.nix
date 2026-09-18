@@ -9,17 +9,17 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "usbeehive";
-  version = "0.12.0";
+  version = "0.12.1";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "abrauchli";
     repo = "usbeehive";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-TShsv/1zn3/0418ubljUmPsdQgSaiN3uaQjMOnHZTYU=";
+    hash = "sha256-zaGUIs/A6UXlsK8uSsMrsdTzQFfCDpsEmJB+lz2O7Pg=";
   };
 
-  cargoHash = "sha256-+Gn3jfaVuJxzjsllKIja41duSkK05X/X/PaSJPS2qwE=";
+  cargoHash = "sha256-4JO9WaVYvBBCt3hVdigMhXrtVOM5t7ZEvVgsOESTVhw=";
 
   nativeBuildInputs = [
     pkg-config
