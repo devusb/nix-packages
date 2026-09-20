@@ -49,13 +49,13 @@ let
 in
 rustPlatform.buildRustPackage {
   pname = "jellium-desktop";
-  version = "0-unstable-2026-09-15";
+  version = "0-unstable-2026-09-19";
 
   src = fetchFromGitHub {
     owner = "andrewrabert";
     repo = "jellium-desktop";
-    rev = "b0a962d277c7bf71176fcf0c9e34a7d33ec1f5f7";
-    hash = "sha256-yX9fLXo2FZFk0ifWx0Jy0Fwzc92DPAUz/oOFJSDg9uU=";
+    rev = "14dc0845981cb7c0aef5fa93ff539d927c8f0eb2";
+    hash = "sha256-e4fanrXusIq3FsVTPqPzNRyye7ja6t6UnjX4mcjHPrk=";
   };
 
   patches = [
@@ -67,7 +67,7 @@ rustPlatform.buildRustPackage {
   ];
 
   cargoRoot = "src";
-  cargoHash = "sha256-h8rw/fFku/kE3/Fd0I0vh3cs14uRc0bjbbJP3k4uwEM=";
+  cargoHash = "sha256-viJZibewxf4rlOI0NpMgaF8NjbvVd27DRHTed0A77kk=";
 
   strictDeps = true;
 
