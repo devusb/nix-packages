@@ -80,6 +80,7 @@
                   "reversepuck"
                   "usbeehive"
                   "jellium-desktop"
+                  "yodecomp"
                 ];
                 "x86_64-linux" = [
                   "message-bridge"
