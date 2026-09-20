@@ -25,4 +25,5 @@ final: prev: {
   heb-mcp = final.callPackage ./pkgs/heb-mcp { };
   usbeehive = final.callPackage ./pkgs/usbeehive { };
   jellium-desktop = final.callPackage ./pkgs/jellium-desktop { };
+  yodecomp = final.callPackage ./pkgs/yodecomp { };
 }
