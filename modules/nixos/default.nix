@@ -8,7 +8,7 @@ let
     igb = ./igb.nix;
     nqptp = ./nqptp.nix;
     chiaki4deck = ./chiaki4deck.nix;
-    deckbd = ./deckbd.nix;
+    deckbd = ./deckbd;
     plex-mpv-sim = ./plex-mpv-shim.nix;
     sleep-on-lan = ./sleep-on-lan.nix;
     quakejs = ./quakejs.nix;
@@ -19,6 +19,7 @@ let
   };
 
   tests = {
+    deckbd = import ./deckbd/test.nix;
     heb-mcp = import ./heb-mcp/test.nix;
   };
 
