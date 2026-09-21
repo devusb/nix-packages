@@ -26,7 +26,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "yodecomp" + lib.optionalString full "-full";
-  version = "0-unstable-2026-09-08";
+  version = "0-unstable-2026-09-09";
 
   src = fetchFromGitHub {
     owner = "shinyquagsire23";
