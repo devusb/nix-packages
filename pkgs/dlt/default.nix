@@ -17,14 +17,14 @@ let
 in
 python3.pkgs.buildPythonApplication rec {
   pname = "dlt";
-  version = "1.30.1a0";
+  version = "1.31.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "dlt-hub";
     repo = "dlt";
     rev = version;
-    hash = "sha256-DzSzWFidVbF0D4w0NUtuJLfjH1qeZDp6s728juQ+7Ks=";
+    hash = "sha256-J3I3tzlYF+uUyFI1uktn2U6iZnIICKKJ0HSSHJMSbVY=";
   };
 
   build-system = [
