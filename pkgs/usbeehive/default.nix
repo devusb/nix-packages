@@ -29,7 +29,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
     udev
   ];
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script {
+    extraArgs = [ "--flake" ];
+  };
 
   meta = {
     description = "Tells you what each USB cable / device on Linux can actually do. Rust port of WhatCable; previously published as `whatcable";

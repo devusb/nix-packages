@@ -3,6 +3,7 @@
   python3,
   fetchFromGitHub,
   makeWrapper,
+  nix-update-script,
 }:
 
 python3.pkgs.buildPythonApplication (finalAttrs: {
@@ -39,6 +40,10 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
 
     runHook postInstall
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [ "--flake" ];
+  };
 
   meta = {
     description = "Steam Deck forwarder that emulates a wireless Steam Controller 2 via OpenPuck";

@@ -2,6 +2,7 @@
   lib,
   python3,
   fetchFromGitHub,
+  nix-update-script,
 }:
 let
   jsonpath-ng' = python3.pkgs.jsonpath-ng.overridePythonAttrs (old: {
@@ -189,6 +190,10 @@ python3.pkgs.buildPythonApplication rec {
   pythonImportsCheck = [
     "dlt"
   ];
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [ "--flake" ];
+  };
 
   meta = {
     description = "Data load tool (dlt) is an open source Python library that makes data loading easy";
