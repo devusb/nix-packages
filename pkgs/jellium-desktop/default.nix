@@ -15,6 +15,7 @@
   libxkbcommon,
   libxcb,
   mpv-unwrapped,
+  nix-update-script,
 }:
 let
   cefArchive = writers.writeJSON "archive.json" {
@@ -123,6 +124,13 @@ rustPlatform.buildRustPackage {
     "$out/bin/jellium-desktop" --version | grep -F "CEF ${cef-binary.version}"
     runHook postInstallCheck
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
 
   meta = {
     description = "Unofficial Jellyfin desktop client built on CEF and mpv";

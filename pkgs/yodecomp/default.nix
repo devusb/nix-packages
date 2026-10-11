@@ -12,6 +12,7 @@
   unzip,
   sdl3,
   retailData ? null,
+  nix-update-script,
 }:
 
 let
@@ -105,6 +106,13 @@ stdenv.mkDerivation (finalAttrs: {
       [ "$f" = "$lower" ] || mv "$f" "$lower"
     done
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
 
   meta = {
     description = "Decompilation of LucasArts' Desktop Adventures engine, SDL port";

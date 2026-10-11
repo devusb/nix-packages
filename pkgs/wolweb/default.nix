@@ -3,6 +3,7 @@
   buildGoModule,
   fetchFromGitHub,
   fetchpatch,
+  nix-update-script,
 }:
 
 buildGoModule {
@@ -22,6 +23,13 @@ buildGoModule {
     "-s"
     "-w"
   ];
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
 
   meta = with lib; {
     description = "Web interface for sending Wake-on-lan (magic packet). An HTTP server built using GoLang and uses Bootstrap for UI";

@@ -2,6 +2,7 @@
   lib,
   python3Packages,
   fetchFromGitHub,
+  nix-update-script,
 }:
 let
   inherit (python3Packages)
@@ -39,6 +40,13 @@ buildPythonPackage {
     install -Dm755 tv $out/bin/tv
     runHook postInstall
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
 
   meta = with lib; {
     description = "Remote control app for Sony TVs (Python, CLI, for computers with shells, not phones";
