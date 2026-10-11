@@ -113,7 +113,7 @@
 
         nixosModules = import ./modules/nixos { inherit inputs self; };
         darwinModules = import ./modules/darwin { inherit inputs self; };
-        homeManagerModules = import ./modules/home-manager { inherit inputs; };
+        homeManagerModules = import ./modules/home-manager { inherit inputs self; };
       };
 
     };
