@@ -2,6 +2,7 @@
   lib,
   fetchFromGitHub,
   python3,
+  nix-update-script,
 }:
 
 python3.pkgs.buildPythonPackage rec {
@@ -42,6 +43,10 @@ python3.pkgs.buildPythonPackage rec {
 
     runHook postInstall
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [ "--flake" ];
+  };
 
   meta = with lib; {
     description = "Sync watched between jellyfin and plex locally";
