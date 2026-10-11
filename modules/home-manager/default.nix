@@ -5,6 +5,7 @@ let
     iterm2 = ./iterm2.nix;
     herdr = ./herdr.nix;
     collie = ./collie.nix;
+    agent-deck = ./agent-deck.nix;
   };
 
   default =
