@@ -5,6 +5,7 @@
   pkg-config,
   stdenv,
   wayland,
+  nix-update-script,
 }:
 
 rustPlatform.buildRustPackage {
@@ -27,6 +28,13 @@ rustPlatform.buildRustPackage {
   buildInputs = lib.optionals stdenv.isLinux [
     wayland
   ];
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
 
   meta = with lib; {
     description = "X11 XTEST reimplementation primarily for Steam Controller on Wayland";

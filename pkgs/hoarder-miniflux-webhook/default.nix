@@ -3,6 +3,7 @@
   buildGoModule,
   fetchFromGitHub,
   fetchpatch,
+  nix-update-script,
 }:
 
 buildGoModule {
@@ -26,6 +27,13 @@ buildGoModule {
   postInstall = ''
     mv $out/bin/main $out/bin/hoarder-miniflux-webhook
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
 
   meta = {
     description = "Simple service to integrate Hoarder with Miniflux using a webhook";
