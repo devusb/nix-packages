@@ -4,6 +4,7 @@ let
     overlay = import ./overlay.nix { inherit inputs self; };
     iterm2 = ./iterm2.nix;
     herdr = ./herdr.nix;
+    collie = ./collie.nix;
   };
 
   default =
