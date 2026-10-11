@@ -8,6 +8,7 @@ let
   inherit (lib)
     mkEnableOption
     mkOption
+    literalExpression
     mkIf
     mkMerge
     types
@@ -17,13 +18,25 @@ let
   herdr = lib.getExe cfg.package;
   jq = lib.getExe pkgs.jq;
 
+  sessionHook =
+    agent:
+    "PATH=${pkgs.python3}/bin:$PATH ${pkgs.runtimeShell} ${cfg.package.src}/src/integration/assets/${agent}/herdr-agent-state.sh session";
+
   pluginManifests = builtins.toJSON (
     lib.mapAttrsToList (_: plugin: "${plugin.package}/herdr-plugin.toml") cfg.plugins
   );
 in
 {
   options.programs.herdr = {
-    claudeCodeHooks.enable = mkEnableOption "the herdr Claude Code session hook";
+    claudeCodeHooks.enable = mkEnableOption "the herdr Claude Code session hook" // {
+      default = config.programs.claude-code.enable;
+      defaultText = literalExpression "config.programs.claude-code.enable";
+    };
+
+    codexHooks.enable = mkEnableOption "the herdr Codex session hook" // {
+      default = config.programs.codex.enable;
+      defaultText = literalExpression "config.programs.codex.enable";
+    };
 
     server.enable = mkEnableOption "a systemd user service running the herdr server";
 
@@ -73,12 +86,29 @@ in
           hooks = [
             {
               type = "command";
-              command = "PATH=${pkgs.python3}/bin:$PATH ${pkgs.runtimeShell} ${cfg.package.src}/src/integration/assets/claude/herdr-agent-state.sh session";
+              command = sessionHook "claude";
               timeout = 10;
             }
           ];
         }
       ];
+    })
+
+    (mkIf cfg.codexHooks.enable {
+      programs.codex = {
+        settings.features.hooks = true;
+        hooks.SessionStart = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = sessionHook "codex";
+                timeout = 10;
+              }
+            ];
+          }
+        ];
+      };
     })
 
     (mkIf cfg.server.enable {
