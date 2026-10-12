@@ -16,6 +16,6 @@ jobs:
       - name: Update flake packages
         uses: gepbird/nix-update-action@v3.1.2
         with:
-          blacklist: "am2rlauncher,igb,pgdiff,quakejs,dreamm,xmltv,message-bridge,heb-mcp"
+          blacklist: "am2rlauncher,igb,pgdiff,quakejs,xmltv,message-bridge,heb-mcp"
           branch: "update_packages_action"
           pr-title: "Update packages"

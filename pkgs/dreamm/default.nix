@@ -83,6 +83,8 @@ stdenv.mkDerivation rec {
     })
   ];
 
+  passthru.updateScript = ./update.sh;
+
   meta = {
     description = "Bespoke emulator for LucasArts games";
     homepage = "https://dreamm.aarongiles.com/";
