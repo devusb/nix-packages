@@ -9,6 +9,7 @@
   curl,
   SDL2,
   util-linux,
+  versionCheckHook,
 }:
 
 stdenv.mkDerivation rec {
@@ -53,6 +54,10 @@ stdenv.mkDerivation rec {
     install -Dm644 readme.txt $out/share/doc/dreamm/readme.txt
     runHook postInstall
   '';
+
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "-h";
+  doInstallCheck = true;
 
   desktopItems = [
     (makeDesktopItem {
