@@ -1,3 +1,4 @@
+# This module is intended to extend the upstream herdr home-manager module, and assumes you have enabled that already before using these options.
 {
   lib,
   pkgs,
