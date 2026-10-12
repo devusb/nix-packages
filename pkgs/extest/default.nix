@@ -25,7 +25,7 @@ rustPlatform.buildRustPackage {
     pkg-config
   ];
 
-  buildInputs = lib.optionals stdenv.isLinux [
+  buildInputs = lib.optionals stdenv.hostPlatform.isLinux [
     wayland
   ];
 
