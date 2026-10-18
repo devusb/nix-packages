@@ -25,6 +25,8 @@ buildPythonPackage {
     hash = "sha256-YJYPEcBCIpPmSUXwpVs4gZij3LEg921d2RGm2U8pT5U=";
   };
 
+  dontCheckPythonMetadata = true;
+
   build-system = [
     setuptools-scm
   ];
