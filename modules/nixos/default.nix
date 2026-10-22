@@ -19,6 +19,7 @@ let
   };
 
   tests = {
+    deckbd = import ./deckbd/test.nix;
     heb-mcp = import ./heb-mcp/test.nix;
   };
 
