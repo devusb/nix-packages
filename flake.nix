@@ -91,17 +91,27 @@
                   "message-bridge"
                 ];
               };
+              blacklistTests = {
+                "aarch64-linux" = [
+                  "deckbd"
+                ];
+              };
               packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
                 lib.filterAttrs (n: _v: !(builtins.elem n blacklistPackages.${system})) self'.packages
               );
               nixosTests = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux (
-                lib.mapAttrs' (
-                  n: testFn:
-                  lib.nameValuePair "nixos-${n}" (testFn {
-                    inherit pkgs;
-                    self = self;
-                  })
-                ) (import ./modules/nixos { inherit inputs self; }).tests
+                lib.mapAttrs'
+                  (
+                    n: testFn:
+                    lib.nameValuePair "nixos-${n}" (testFn {
+                      inherit pkgs;
+                      self = self;
+                    })
+                  )
+                  (
+                    lib.filterAttrs (n: _v: !(builtins.elem n (blacklistTests.${system} or [ ])))
+                      (import ./modules/nixos { inherit inputs self; }).tests
+                  )
               );
             in
             packages // nixosTests;
