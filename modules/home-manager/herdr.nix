@@ -121,6 +121,7 @@ in
         Service = {
           ExecStart = "${lib.getExe cfg.package} server";
           Restart = "on-failure";
+          KillMode = "mixed";
         };
         Install.WantedBy = [ "default.target" ];
       };
