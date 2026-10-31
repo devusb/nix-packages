@@ -18,9 +18,19 @@
   nix-update-script,
 }:
 let
+  cef' = cef-binary.override {
+    version = "152.0.8";
+    gitRevision = "1ce985c";
+    chromiumVersion = "152.0.7977.134";
+    srcHashes = {
+      aarch64-linux = "sha256-mY8qMQ0Qhivf+Tc83IP5QVef0f+uW1jYFZpFVOFTSaE=";
+      x86_64-linux = "sha256-f0fuscKXCZ/7nhLQ3qag1Oq9JVE10RT/Cs6HgL2z/us=";
+    };
+  };
+
   cefArchive = writers.writeJSON "archive.json" {
     type = "minimal";
-    name = baseNameOf cef-binary.src.url;
+    name = baseNameOf cef'.src.url;
     sha1 = "";
   };
 
@@ -28,13 +38,14 @@ let
   # Resources are copied into one directory rather than symlinked
   cef-lib = stdenv.mkDerivation {
     pname = "cef-lib";
-    inherit (cef-binary) version;
+    inherit (cef') version;
     dontUnpack = true;
     stripDebugList = [ "." ];
     installPhase = ''
       mkdir -p $out
-      cp -r ${cef-binary}/Release/* $out/
-      cp -r ${cef-binary}/Resources/* $out/
+      cp -r ${cef'}/Release/* $out/
+      cp -r ${cef'}/Resources/* $out/
+      cp -r ${cef'}/include $out/
       cp ${cefArchive} $out/archive.json
     '';
   };
@@ -121,7 +132,7 @@ rustPlatform.buildRustPackage {
   doInstallCheck = true;
   installCheckPhase = ''
     runHook preInstallCheck
-    "$out/bin/jellium-desktop" --version | grep -F "CEF ${cef-binary.version}"
+    "$out/bin/jellium-desktop" --version | grep -F "CEF ${cef'.version}"
     runHook postInstallCheck
   '';
 
