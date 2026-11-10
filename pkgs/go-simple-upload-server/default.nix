@@ -6,16 +6,16 @@
 
 buildGoModule rec {
   pname = "go-simple-upload-server";
-  version = "2.2.0";
+  version = "2.3.0";
 
   src = fetchFromGitHub {
     owner = "mayth";
     repo = "go-simple-upload-server";
     rev = "v${version}";
-    hash = "sha256-auzlL3tEx9yeml0r1BXJXqntLRPNQtYrf1KGcjNoo1E=";
+    hash = "sha256-Lbe83YvAINw//pgHwFlOWfCws31KCu3woEMkSvwLmEo=";
   };
 
-  vendorHash = "sha256-T/DXlhBE8TE6TnNQVuZE81jQedLyQZzDhJPGL4y2zew=";
+  vendorHash = "sha256-+ZPik/uA2e367Zu6GY3lXqVZuBVB3NmkPzuENiPGCqs=";
 
   ldflags = [
     "-s"
